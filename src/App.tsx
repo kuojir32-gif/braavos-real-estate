@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "motion/react";
-import { Search, MapPin, Home, Key, Phone, Mail, Instagram, Facebook, Linkedin, Menu, X, Star, ArrowRight, CheckCircle2, MessageSquare, Send, Globe, ShieldCheck, Zap, ChevronDown, Tag } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { Search, MapPin, Home, Key, Phone, Mail, Instagram, Facebook, Linkedin, Menu, X, Star, ArrowRight, CheckCircle2, MessageSquare, Send, Globe, ShieldCheck, Zap, ChevronDown, Tag, TrendingUp, Play, ExternalLink, SlidersHorizontal } from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
 import { GoogleGenAI, Type } from "@google/genai";
 
 // Initialize Gemini AI
@@ -81,9 +81,9 @@ const FAKE_AGENTS = [
   {
     id: 7,
     name: "AFAN SADIQ",
-    role: "Leasing Specialist",
+    role: "Property Consultant",
     image: "https://i.imgur.com/6J4tVPc.jpeg",
-    specialty: "Short-Term / Holiday Homes",
+    specialty: "JVC Specialist",
     languages: "English, Urdu, Hindi",
     description: "Meet Afan Sadiq — a seasoned property consultant with over 4 years of experience, known for his honest advice and client-first approach. Fluent in English, Hindi, and Urdu, Afan blends integrity with deep market insight to make every real estate journey smooth and informed.",
     reviews: [
@@ -106,12 +106,12 @@ const FAKE_AGENTS = [
     id: 9,
     name: "QUNISH WARIS",
     role: "Luxury Property Consultant",
-    image: "https://i.imgur.com/UPjYCXm.jpeg",
+    image: "https://i.imgur.com/4ZalEaT.jpeg",
     specialty: "Jumeirah Lakes Towers (JLT)",
     languages: "English, Hindi, Urdu",
     description: "With a steadfast focus on property quality, Qunish prides himself on his detailed and extensive understanding of Jumeirah Lakes Towers (JLT). He is dedicated to ensuring the highest level of service, assisting clients in securing their dream homes within the shortest possible timeframe.",
     reviews: [
-      { user: "Sonia G.", rating: 5, text: "Qunish made finding a rental in Dubai Marina so easy. He handled all the paperwork!" },
+      { user: "Sonia G.", rating: 5, text: "Qunish made finding a property in Dubai Marina so easy. He handled all the paperwork!" },
       { user: "Mark D.", rating: 5, text: "Excellent follow-up and very helpful with local community info." }
     ]
   },
@@ -155,9 +155,9 @@ const FAKE_AGENTS = [
   }
 ];
 
-const FAKE_PROPERTIES = Array.from({ length: 40 }, (_, i) => ({
+const FAKE_PROPERTIES = Array.from({ length: 30 }, (_, i) => ({
   id: i + 1,
-  purpose: i < 20 ? "sale" : "rent",
+  purpose: "sale",
   image: `https://images.unsplash.com/photo-${[
     "1512917774080-9991f1c4c750", "1600585154340-be6161a56a0c", "1600607687940-4e2a09695d51", 
     "1600566753190-17f0bb2a6c3e", "1600210492486-724fe5c67fb0", "1580587767378-7827a6e414c8",
@@ -167,8 +167,8 @@ const FAKE_PROPERTIES = Array.from({ length: 40 }, (_, i) => ({
     "1600570997594-3bc88f98c6b9", "1600566753086-00f18fb6b3ea", "1600607687644-c7171ef3f096",
     "1600585152223-144b62475993", "1605141830624-74746f91572f"
   ][i % 20]}?auto=format&fit=crop&q=80&w=1000`,
-  price: i < 20 ? `AED ${(5 + Math.random() * 50).toFixed(1)}M` : `AED ${(150 + Math.random() * 500).toFixed(0)}K /yr`,
-  title: `${i < 20 ? "Sale" : "Rental"} Property ${i + 1} - Premium ${["Villa", "Penthouse", "Estate", "Suite"][i % 4]}`,
+  price: `AED ${(5 + Math.random() * 50).toFixed(1)}M`,
+  title: `Luxury Property ${i + 1} - Premium ${["Villa", "Penthouse", "Estate", "Suite"][i % 4]}`,
   location: ["Palm Jumeirah", "Downtown Dubai", "Dubai Hills", "Emirates Hills", "Business Bay"][i % 5],
   beds: 3 + (i % 4),
   baths: 4 + (i % 3),
@@ -205,13 +205,195 @@ const FAKE_REVIEWS = [
   { name: "Grace Lee", role: "Philanthropist", text: "A truly community-focused agency. Their integrity shines through in every interaction." }
 ];
 
-const FeaturedProperty = ({ image, price, title, location, beds, baths, size }: any) => (
+const PropertyDetailModal = ({ property, isOpen, onClose, onEnquireSubmit, isSubmitting, formSubmitted }: any) => {
+  if (!property) return null;
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[150] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 md:p-8"
+          onClick={onClose}
+        >
+          <motion.div 
+            initial={{ scale: 0.9, opacity: 0, y: 30 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: 30 }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="bg-white w-full max-w-6xl h-full max-h-[95vh] rounded-[2.5rem] overflow-hidden flex flex-col md:flex-row shadow-2xl relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Mobile Close Button */}
+            <button 
+              onClick={onClose}
+              className="absolute top-4 right-4 z-50 md:hidden bg-black/20 backdrop-blur-md p-2 rounded-full text-white"
+            >
+              <X className="h-6 w-6" />
+            </button>
+
+            {/* Left side: Property Details */}
+            <div className="md:w-3/5 h-[45vh] md:h-full overflow-y-auto bg-gray-50 flex flex-col scrollbar-hide">
+              <div className="relative min-h-[300px] md:min-h-[450px] shrink-0">
+                <img src={property.image} alt={property.title} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                
+                {/* Desktop Close Button */}
+                <button 
+                  onClick={onClose}
+                  className="hidden md:flex absolute top-8 left-8 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 p-3 rounded-2xl text-white transition-all transform hover:scale-105"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+
+                <div className="absolute bottom-8 left-8">
+                  <div className="flex gap-3 mb-4">
+                    <span className="bg-luxury-gold px-4 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-widest text-white shadow-lg">Featured</span>
+                    <span className="bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-widest text-luxury-navy shadow-lg">New Unit</span>
+                  </div>
+                  <h2 className="text-4xl md:text-5xl font-serif font-bold text-white leading-tight drop-shadow-md">{property.title}</h2>
+                </div>
+              </div>
+              
+              <div className="p-8 md:p-14">
+                <div className="flex flex-wrap items-center gap-6 mb-12 border-b border-gray-200/60 pb-10">
+                  <div className="flex items-center gap-3">
+                    <div className="h-12 w-12 rounded-2xl bg-luxury-gold/10 flex items-center justify-center text-luxury-gold">
+                      <MapPin className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400">Location</p>
+                      <p className="text-sm font-bold text-luxury-navy">{property.location}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="h-12 w-12 rounded-2xl bg-luxury-navy/5 flex items-center justify-center text-luxury-navy">
+                      <Tag className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400">Price From</p>
+                      <p className="text-sm font-bold text-luxury-gold">{property.price}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-3 gap-6 mb-14">
+                  <div className="text-center p-6 rounded-3xl bg-white border border-gray-100 shadow-sm">
+                    <p className="text-2xl font-bold text-luxury-navy mb-1">{property.beds || "4"}</p>
+                    <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400">Bedrooms</p>
+                  </div>
+                  <div className="text-center p-6 rounded-3xl bg-white border border-gray-100 shadow-sm">
+                    <p className="text-2xl font-bold text-luxury-navy mb-1">{property.baths || "5"}</p>
+                    <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400">Bathrooms</p>
+                  </div>
+                  <div className="text-center p-6 rounded-3xl bg-white border border-gray-100 shadow-sm">
+                    <p className="text-2xl font-bold text-luxury-navy mb-1">{(property.size || 4500)/1000}k</p>
+                    <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400">Sq. Ft</p>
+                  </div>
+                </div>
+
+                <div className="mb-12">
+                  <h3 className="text-xl font-serif font-bold text-luxury-navy mb-6">Property Overview</h3>
+                  <p className="text-gray-600 leading-relaxed font-light text-lg mb-8">
+                    Discover unparalleled luxury in this masterfully crafted residence located in {property.location}. 
+                    Every aspect of this property has been curated to provide a superior living experience, 
+                    featuring premium finishes, expansive living spaces, and floor-to-ceiling windows that capture 
+                    the essence of {property.location}'s dynamic energy.
+                  </p>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
+                    {['Floor-to-ceiling windows', 'Private elevator access', 'Bespoke Italian kitchen', 'Smart home automation', 'Private infinity pool', 'State-of-the-art security'].map(f => (
+                      <div key={f} className="flex items-center gap-3 text-sm text-gray-700 font-medium group">
+                        <div className="h-2 w-2 rounded-full bg-luxury-gold transform group-hover:scale-150 transition-transform" />
+                        {f}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right side: Enquiry Form */}
+            <div className="md:w-2/5 p-8 md:p-16 h-full overflow-y-auto flex flex-col justify-center bg-white">
+              <div className="mb-12 text-center md:text-left">
+                <p className="text-luxury-gold font-bold uppercase tracking-[0.4em] text-[8px] mb-4">Concierge Desk</p>
+                <h3 className="text-4xl font-serif font-bold text-luxury-navy mb-4">Register Interest</h3>
+                <p className="text-gray-500 font-light text-base leading-relaxed">Our portfolio managers will provide a personalized presentation of this property.</p>
+              </div>
+
+              {formSubmitted ? (
+                <div className="flex flex-col items-center justify-center py-16 text-center">
+                  <motion.div 
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="h-24 w-24 bg-green-50 rounded-full flex items-center justify-center mb-8 shadow-inner"
+                  >
+                    <CheckCircle2 className="h-12 w-12 text-green-500" />
+                  </motion.div>
+                  <h4 className="text-3xl font-serif font-bold text-luxury-navy mb-3">Enquiry Sent</h4>
+                  <p className="text-gray-500 font-light mb-8 max-w-[250px]">A dedicated specialist will contact you shortly to coordinate further steps.</p>
+                </div>
+              ) : (
+                <form className="space-y-6" onSubmit={onEnquireSubmit}>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                       <label className="text-[9px] font-black uppercase tracking-widest text-gray-400 px-1">First Name</label>
+                       <input required name="firstName" placeholder="First Name" className="w-full bg-gray-50 border-none rounded-2xl px-5 py-4.5 text-sm font-medium focus:ring-2 focus:ring-luxury-gold/20 transition-all outline-none" />
+                    </div>
+                    <div className="space-y-2">
+                       <label className="text-[9px] font-black uppercase tracking-widest text-gray-400 px-1">Last Name</label>
+                       <input required name="lastName" placeholder="Last Name" className="w-full bg-gray-50 border-none rounded-2xl px-5 py-4.5 text-sm font-medium focus:ring-2 focus:ring-luxury-gold/20 transition-all outline-none" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[9px] font-black uppercase tracking-widest text-gray-400 px-1">Email Address</label>
+                    <input required type="email" name="email" placeholder="example@domain.com" className="w-full bg-gray-50 border-none rounded-2xl px-5 py-4.5 text-sm font-medium focus:ring-2 focus:ring-luxury-gold/20 transition-all outline-none" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[9px] font-black uppercase tracking-widest text-gray-400 px-1">Phone Number</label>
+                    <input required type="tel" name="phone" placeholder="+971 00 000 0000" className="w-full bg-gray-50 border-none rounded-2xl px-5 py-4.5 text-sm font-medium focus:ring-2 focus:ring-luxury-gold/20 transition-all outline-none" />
+                  </div>
+                  
+                  <button 
+                    disabled={isSubmitting}
+                    className="w-full mt-6 bg-luxury-navy text-white py-5.5 rounded-3xl font-black uppercase tracking-[0.3em] text-[9px] transition-all hover:bg-black hover:shadow-2xl shadow-luxury-navy/10 disabled:bg-gray-300 flex items-center justify-center gap-4 group active:scale-[0.98]"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        Securing Request...
+                      </>
+                    ) : (
+                      <>
+                        Confirm Request
+                        <ArrowRight className="h-3 w-3 transform group-hover:translate-x-2 transition-transform" />
+                      </>
+                    )}
+                  </button>
+                  <div className="flex items-center justify-center gap-2 pt-6 opacity-40">
+                    <ShieldCheck className="h-3 w-3" />
+                    <p className="text-[8px] font-bold uppercase tracking-widest">End-to-End Encrypted Selection</p>
+                  </div>
+                </form>
+              )}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
+const FeaturedProperty = ({ image, price, title, location, beds, baths, size, onEnquire, onOpenDetail }: any) => (
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     whileHover={{ y: -10 }}
-    className="group relative overflow-hidden rounded-xl bg-white shadow-xl dark:bg-slate-900"
+    className="group relative overflow-hidden rounded-xl bg-white shadow-xl dark:bg-slate-900 flex flex-col h-full cursor-pointer"
     id={`property-${title.replace(/\s+/g, '-').toLowerCase()}`}
+    onClick={() => onOpenDetail({ image, price, title, location, beds, baths, size })}
   >
     <div className="aspect-[4/3] overflow-hidden">
       <img 
@@ -224,18 +406,28 @@ const FeaturedProperty = ({ image, price, title, location, beds, baths, size }: 
         Featured
       </div>
     </div>
-    <div className="p-6">
+    <div className="p-6 flex-1 flex flex-col">
       <div className="mb-2 text-2xl font-serif font-bold text-luxury-gold">{price}</div>
       <h3 className="mb-1 text-lg font-bold group-hover:text-luxury-gold transition-colors">{title}</h3>
       <div className="mb-4 flex items-center text-sm text-gray-500">
         <MapPin className="mr-1 h-4 w-4" />
         {location}
       </div>
-      <div className="flex items-center justify-between border-t border-gray-100 pt-4 text-xs font-medium text-gray-600 uppercase tracking-wider">
+      <div className="flex items-center justify-between border-t border-gray-100 pt-4 text-xs font-medium text-gray-600 uppercase tracking-wider mb-6">
         <span className="flex items-center"><Home className="mr-1 h-4 w-4" /> {beds} Beds</span>
         <span className="flex items-center"><Key className="mr-1 h-4 w-4" /> {baths} Baths</span>
         <span>{size} sq ft</span>
       </div>
+      
+      <button 
+        onClick={(e) => {
+          e.stopPropagation();
+          onOpenDetail({ image, price, title, location, beds, baths, size });
+        }}
+        className="mt-auto w-full py-4 rounded-xl border border-luxury-gold/50 text-luxury-gold font-bold uppercase tracking-widest text-[10px] hover:bg-luxury-gold hover:text-white transition-all shadow-sm active:scale-95 flex items-center justify-center gap-2"
+      >
+        Enquire Now <ArrowRight className="h-3 w-3" />
+      </button>
     </div>
   </motion.div>
 );
@@ -245,55 +437,42 @@ interface LogoProps {
   light?: boolean;
 }
 
-const Logo = ({ className = "h-10", light }: LogoProps) => {
+const Logo = ({ className = "h-12", light }: LogoProps) => {
   const [useImage, setUseImage] = useState(true);
 
   return (
-    <div className={`flex items-center gap-4 ${className} group cursor-pointer`}>
-      <div className="relative h-12 w-12 flex items-center justify-center">
+    <div className={`flex items-center gap-3 ${className} group cursor-pointer`}>
+      <div className="relative h-[125%] aspect-square flex-shrink-0 transition-transform duration-500 group-hover:scale-110">
         {useImage ? (
            <img 
-            src="/logo.png" 
+            src="https://i.imgur.com/CX2Jtea.png" 
             alt="Braavos Logo" 
-            className={`h-full w-full object-contain brightness-110 contrast-125 ${light ? 'brightness-200' : ''}`} 
+            className={`h-full w-full object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)] ${light ? 'brightness-0 invert' : ''}`} 
             onError={() => setUseImage(false)}
            />
         ) : (
-          <svg viewBox="0 0 100 120" className="h-full w-full drop-shadow-xl">
-            <defs>
-              <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#C49A6C" />
-                <stop offset="40%" stopColor="#FBDF93" />
-                <stop offset="100%" stopColor="#8A6D3B" />
-              </linearGradient>
-            </defs>
-            <path d="M5 40 L16 33 V85 L5 92 Z" fill="url(#goldGrad)" opacity={light ? "0.8" : "1"} />
-            <path d="M19 25 L30 18 V88 L19 95 Z" fill="url(#goldGrad)" opacity={light ? "0.8" : "1"} />
-            <path d="M33 5 L44 0 V100 L33 105 Z" fill="url(#goldGrad)" opacity={light ? "0.8" : "1"} />
-            
-            <path d="M52 35 L61 30 V75 L52 80 Z" fill="url(#goldGrad)" />
-            <path d="M64 45 L73 40 V72 L64 77 Z" fill="url(#goldGrad)" />
-            <path d="M76 55 L85 50 V68 L76 73 Z" fill="url(#goldGrad)" />
-            
-            <path d="M44 65 L85 85 V95 L44 75 Z" fill="url(#goldGrad)" opacity="0.9" />
-            <path d="M44 80 L75 100 V110 L44 90 Z" fill="url(#goldGrad)" opacity="0.7" />
-            <path d="M44 95 L65 110 V118 L44 105 Z" fill="url(#goldGrad)" opacity="0.5" />
-          </svg>
+          <div className={`h-full w-full rounded-xl border border-luxury-gold/20 flex items-center justify-center ${light ? 'bg-white/10' : 'bg-black'}`}>
+            <span className="text-luxury-gold font-serif text-xl italic">B</span>
+          </div>
         )}
       </div>
-      <div className="flex flex-col">
-        <span className={`text-2xl font-serif font-black tracking-[0.25em] leading-none drop-shadow-sm ${light ? 'text-white' : 'gold-text-gradient'}`}>BRAAVOS</span>
-        <span className={`text-[10px] font-black tracking-[0.6em] mt-2 uppercase opacity-90 ${light ? 'text-white/60' : 'gold-text-gradient'}`}>Real Estate</span>
+      <div className="flex flex-col justify-center gap-0.5">
+        <span className={`text-[1.5em] sm:text-[1.7em] font-serif font-black tracking-[0.25em] leading-none drop-shadow-sm ${light ? 'text-white' : 'gold-text-gradient'}`}>
+          BRAAVOS
+        </span>
+        <span className={`text-[0.35em] sm:text-[0.45em] font-black tracking-[0.7em] uppercase opacity-60 leading-none ${light ? 'text-white/60' : 'gold-text-gradient'} italic`}>
+          Real Estate
+        </span>
       </div>
     </div>
   );
 };
 
-const Navbar = ({ onContactClick, onSaleClick, onRentClick, onProjectsClick }: { 
+const Navbar = ({ onContactClick, onSaleClick, onProjectsClick, onLogoClick }: { 
   onContactClick: () => void;
   onSaleClick: () => void;
-  onRentClick: () => void;
   onProjectsClick: () => void;
+  onLogoClick: () => void;
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -306,27 +485,31 @@ const Navbar = ({ onContactClick, onSaleClick, onRentClick, onProjectsClick }: {
 
   const navItems = [
     { name: "Sale", action: onSaleClick },
-    { name: "Rent", action: onRentClick },
     { name: "Projects", action: onProjectsClick },
     { name: "Services", link: "#services" },
     { name: "About", link: "#about" },
-    { name: "Agents", link: "#agents" }
+    { name: "Brokers", link: "#agents" }
   ];
+
+  const handleLogoClick = () => {
+    onLogoClick();
+    setIsMenuOpen(false);
+  };
 
   return (
     <nav className={`fixed top-0 z-50 w-full transition-all duration-300 ${isScrolled ? "bg-white/90 py-3 shadow-xl backdrop-blur-md" : "bg-transparent py-6"}`}>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-12">
-        <div className="cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <Logo className="h-8" light={!isScrolled} />
+        <div className="cursor-pointer" onClick={handleLogoClick}>
+          <Logo className="h-10" light={!isScrolled} />
         </div>
         
-        <div className="hidden items-center gap-12 text-[12px] font-black uppercase tracking-[0.3em] lg:flex">
+        <div className="hidden items-center gap-12 text-[15px] font-serif font-medium tracking-wider lg:flex">
           {navItems.map((item) => (
             item.action ? (
               <button 
                 key={item.name} 
                 onClick={item.action}
-                className={`transition-all hover:text-luxury-gold cursor-pointer relative after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-0 after:h-[1.5px] after:bg-luxury-gold after:transition-all hover:after:w-full ${isScrolled ? "text-luxury-navy" : "text-white"}`}
+                className={`transition-all hover:text-luxury-gold cursor-pointer relative after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-0 after:h-[1px] after:bg-luxury-gold after:transition-all hover:after:w-full ${isScrolled ? "text-luxury-navy" : "text-white"}`}
               >
                 {item.name}
               </button>
@@ -334,7 +517,7 @@ const Navbar = ({ onContactClick, onSaleClick, onRentClick, onProjectsClick }: {
               <a 
                 key={item.name} 
                 href={item.link} 
-                className={`transition-all hover:text-luxury-gold relative after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-0 after:h-[1.5px] after:bg-luxury-gold after:transition-all hover:after:w-full ${isScrolled ? "text-luxury-navy" : "text-white"}`}
+                className={`transition-all hover:text-luxury-gold relative after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-0 after:h-[1px] after:bg-luxury-gold after:transition-all hover:after:w-full ${isScrolled ? "text-luxury-navy" : "text-white"}`}
               >
                 {item.name}
               </a>
@@ -342,7 +525,7 @@ const Navbar = ({ onContactClick, onSaleClick, onRentClick, onProjectsClick }: {
           ))}
           <button 
             onClick={onContactClick}
-            className="gold-gradient rounded-full px-7 py-2.5 text-white shadow-lg transition-all hover:scale-105 active:scale-95 hover:shadow-luxury-gold/20"
+            className="gold-gradient rounded-full px-8 py-2.5 text-white shadow-lg transition-all hover:scale-105 active:scale-95 hover:shadow-luxury-gold/20 font-serif"
           >
             Contact Us
           </button>
@@ -368,7 +551,7 @@ const Navbar = ({ onContactClick, onSaleClick, onRentClick, onProjectsClick }: {
                   <button 
                     key={item.name} 
                     onClick={() => { item.action?.(); setIsMenuOpen(false); }}
-                    className="text-left text-xl font-serif font-bold text-luxury-navy flex justify-between items-center"
+                    className="text-left text-xl font-serif font-medium text-luxury-navy flex justify-between items-center"
                   >
                     {item.name} <ArrowRight className="h-4 w-4 text-luxury-gold" />
                   </button>
@@ -377,7 +560,7 @@ const Navbar = ({ onContactClick, onSaleClick, onRentClick, onProjectsClick }: {
                     key={item.name} 
                     href={item.link} 
                     onClick={() => setIsMenuOpen(false)}
-                    className="text-xl font-serif font-bold text-luxury-navy"
+                    className="text-xl font-serif font-medium text-luxury-navy"
                   >
                     {item.name}
                   </a>
@@ -385,7 +568,7 @@ const Navbar = ({ onContactClick, onSaleClick, onRentClick, onProjectsClick }: {
               ))}
               <button 
                 onClick={() => { onContactClick(); setIsMenuOpen(false); }}
-                className="gold-gradient w-full py-5 rounded-xl text-white font-bold uppercase tracking-[0.2em] mt-4 shadow-xl"
+                className="gold-gradient w-full py-5 rounded-xl text-white font-serif font-medium text-lg mt-4 shadow-xl"
               >
                 Contact Us
               </button>
@@ -400,7 +583,7 @@ const Navbar = ({ onContactClick, onSaleClick, onRentClick, onProjectsClick }: {
 const ContactModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => (
   <AnimatePresence>
     {isOpen && (
-      <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+      <div className="fixed inset-0 z-[160] flex items-center justify-center p-6">
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -425,7 +608,9 @@ const ContactModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
               </div>
               <div>
                 <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Call Our Office</p>
-                <p className="text-xl font-bold text-luxury-navy">+971 4 321 0000</p>
+                <p className="text-xl font-bold text-luxury-navy">
+                  <a href="tel:+971586522515" className="hover:text-luxury-gold transition-colors">+971 58 652 2515</a>
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-6 p-6 rounded-2xl bg-luxury-cream border border-luxury-gold/10 hover:border-luxury-gold transition-colors group">
@@ -434,7 +619,9 @@ const ContactModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
               </div>
               <div>
                 <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Email Us</p>
-                <p className="text-xl font-bold text-luxury-navy">concierge@braavos.ae</p>
+                <p className="text-xl font-bold text-luxury-navy">
+                  <a href="mailto:braavosrealestate@gmail.com" className="hover:text-luxury-gold transition-colors">braavosrealestate@gmail.com</a>
+                </p>
               </div>
             </div>
             <button 
@@ -467,9 +654,9 @@ const AgentProfileModal = ({ agent, isOpen, onClose }: { agent: any; isOpen: boo
           exit={{ opacity: 0, scale: 0.95, y: 30 }}
           className="relative w-full max-w-4xl bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row h-[85vh] md:h-auto"
         >
-          <div className="md:w-1/3 bg-luxury-navy relative overflow-hidden group">
-            <img src={agent.image} alt={agent.name} className="h-full w-full object-cover opacity-90 scale-105 group-hover:scale-100 transition-transform duration-1000" />
-            <div className="absolute inset-0 bg-gradient-to-t from-luxury-navy via-transparent to-transparent p-8 flex flex-col justify-end">
+          <div className="md:w-1/3 bg-luxury-navy flex items-center justify-center relative overflow-hidden group">
+            <img src={agent.image} alt={agent.name} className="h-full w-full object-contain opacity-90 transition-transform duration-1000" />
+            <div className="absolute inset-0 bg-gradient-to-t from-luxury-navy/60 via-transparent to-transparent p-8 flex flex-col justify-end pointer-events-none">
               <h2 className="text-3xl font-serif font-bold text-white mb-2">{agent.name}</h2>
               <p className="text-luxury-gold font-bold uppercase tracking-widest text-xs">{agent.role}</p>
             </div>
@@ -481,7 +668,7 @@ const AgentProfileModal = ({ agent, isOpen, onClose }: { agent: any; isOpen: boo
           <div className="flex-1 p-8 md:p-12 overflow-y-auto bg-white custom-scrollbar">
             <div className="flex justify-between items-start mb-8">
               <div>
-                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-luxury-gold mb-4">About Agent</p>
+                <p className="text-xs font-serif font-medium text-luxury-gold mb-3">About Agent</p>
                 <div className="flex flex-wrap gap-3 mb-6">
                   {agent.languages.split(', ').map((lang: string) => (
                     <span key={lang} className="px-3 py-1 bg-luxury-cream border border-luxury-gold/10 rounded-full text-[10px] font-bold uppercase text-luxury-navy/60">{lang}</span>
@@ -521,7 +708,24 @@ const AgentProfileModal = ({ agent, isOpen, onClose }: { agent: any; isOpen: boo
                 </div>
               </section>
 
-
+              <div className="pt-8 border-t border-gray-100 flex flex-col sm:flex-row gap-4">
+                <a 
+                  href={`tel:+971586522515`}
+                  className="flex-1 py-4 bg-luxury-navy text-white rounded-xl font-bold uppercase tracking-widest text-[10px] flex items-center justify-center gap-3 hover:bg-black transition-all shadow-lg active:scale-95"
+                >
+                  <Phone className="h-4 w-4 text-luxury-gold" /> Call Agent
+                </a>
+                <button 
+                  onClick={() => {
+                    onClose();
+                    const contactForm = document.getElementById('contact');
+                    contactForm?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="flex-1 py-4 gold-gradient text-white rounded-xl font-bold uppercase tracking-widest text-[10px] flex items-center justify-center gap-3 shadow-lg hover:shadow-luxury-gold/20 transition-all active:scale-95"
+                >
+                  <Mail className="h-4 w-4" /> Send Enquiry
+                </button>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -560,14 +764,18 @@ const Chatbot = () => {
         title: p.title,
         price: p.price,
         location: p.location,
-        purpose: p.purpose,
         beds: p.beds
       }));
 
       const model = "gemini-3-flash-preview";
       const systemInstruction = `You are a luxury real estate concierge for Braavos Real Estate in Dubai. 
-      Your goal is to help customers find properties based on their demands.
-      You have access to the following properties: ${JSON.stringify(propertyData)}.
+      Your goal is to help customers find properties for sale or upcoming off-plan projects based on their demands.
+      You have access to the following properties for sale: ${JSON.stringify(propertyData)}.
+      You also have access to off-plan projects: ${JSON.stringify(FAKE_PROJECTS)}.
+      
+      If a user asks to speak to a real person, a broker, or needs human assistance, you MUST provide our contact details:
+      - Phone: +971 58 652 2515
+      - Email: braavosrealestate@gmail.com
       
       Always respond in JSON format with the following structure:
       {
@@ -628,18 +836,16 @@ const Chatbot = () => {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="absolute bottom-20 right-0 w-[380px] overflow-hidden rounded-2xl bg-white shadow-2xl border border-gray-100 flex flex-col"
+            className="absolute bottom-16 right-0 w-[320px] max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl bg-white shadow-2xl border border-gray-100 flex flex-col"
           >
             <div className="bg-luxury-navy p-5 text-white flex justify-between items-center">
               <div className="flex items-center gap-3">
                 <Logo className="h-6" />
-                <div>
-                  <p className="text-[10px] text-green-400 flex items-center gap-1 font-bold"><span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" /> CONCIERGE AI ACTIVE</p>
-                </div>
+                <div />
               </div>
               <button onClick={() => setIsOpen(false)}><X className="h-5 w-5 opacity-60 hover:opacity-100" /></button>
             </div>
-            <div ref={scrollRef} className="h-[450px] overflow-y-auto p-4 space-y-4 bg-gray-50 scrollbar-hide">
+            <div ref={scrollRef} className="h-[360px] overflow-y-auto p-4 space-y-4 bg-gray-50 scrollbar-hide">
               {messages.map((msg: any, i) => (
                 <div key={i} className={`flex flex-col ${msg.role === 'bot' ? 'items-start' : 'items-end'}`}>
                   <div className={`max-w-[90%] p-3 rounded-2xl text-sm ${msg.role === 'bot' ? 'bg-white text-gray-800 rounded-tl-none shadow-sm' : 'gold-gradient text-white rounded-tr-none'}`}>
@@ -707,7 +913,8 @@ const Chatbot = () => {
   );
 };
 
-const PropertyExplorer = ({ isOpen, onClose, mode }: { isOpen: boolean; onClose: () => void, mode: "sale" | "rent" | "projects" }) => {
+const PropertyExplorer = ({ isOpen, onClose, mode, onLogoClick, onEnquire, onOpenDetail }: { isOpen: boolean; onClose: () => void, mode: "sale" | "projects", onLogoClick: () => void, onEnquire: (p: any) => void, onOpenDetail: (p: any) => void }) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [activeFilters, setActiveFilters] = useState({
     location: "All",
     type: "All",
@@ -727,18 +934,12 @@ const PropertyExplorer = ({ isOpen, onClose, mode }: { isOpen: boolean; onClose:
         const typeMatch = activeFilters.type === "All" || p.title.includes(activeFilters.type);
         
         let priceMatch = true;
-        if (activeFilters.priceRange !== "All") {
-          const priceStr = p.price.replace("AED ", "").replace("M", "").replace("K /yr", "");
+        if (activeFilters.priceRange !== "All" && mode === "sale") {
+          const priceStr = p.price.replace("AED ", "").replace("M", "");
           const priceVal = parseFloat(priceStr);
-          if (mode === "sale") {
-            if (activeFilters.priceRange === "Under 10M") priceMatch = priceVal < 10;
-            if (activeFilters.priceRange === "10M - 25M") priceMatch = priceVal >= 10 && priceVal <= 25;
-            if (activeFilters.priceRange === "Over 25M") priceMatch = priceVal > 25;
-          } else {
-            if (activeFilters.priceRange === "Budget") priceMatch = priceVal < 250;
-            if (activeFilters.priceRange === "Premium") priceMatch = priceVal >= 250 && priceVal <= 500;
-            if (activeFilters.priceRange === "Ultra") priceMatch = priceVal > 500;
-          }
+          if (activeFilters.priceRange === "Under 10M") priceMatch = priceVal < 10;
+          if (activeFilters.priceRange === "10M - 25M") priceMatch = priceVal >= 10 && priceVal <= 25;
+          if (activeFilters.priceRange === "Over 25M") priceMatch = priceVal > 25;
         }
         
         return locMatch && typeMatch && priceMatch;
@@ -754,11 +955,23 @@ const PropertyExplorer = ({ isOpen, onClose, mode }: { isOpen: boolean; onClose:
           className="fixed inset-0 z-[110] bg-white overflow-hidden flex flex-col"
         >
           {/* Header */}
-          <div className="border-b border-gray-100 px-8 py-4 flex items-center justify-between bg-white shadow-sm">
-            <Logo className="h-8" />
-            <div className="text-center hidden md:block">
-                <h3 className="text-xl font-serif font-bold text-luxury-navy capitalize tracking-tight">{mode} Portfolio</h3>
-                <p className="text-[10px] text-luxury-gold font-bold uppercase tracking-[0.3em]">{filteredItems.length} curated listings</p>
+          <div className="border-b border-gray-100 px-8 py-3 flex items-center justify-between bg-white shadow-sm z-30">
+            <div className="flex items-center gap-4">
+              <button 
+                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                className="flex items-center gap-2 px-6 py-2.5 bg-luxury-navy text-white rounded-full text-[11px] font-black uppercase tracking-[0.2em] hover:bg-luxury-gold transition-all shadow-lg active:scale-95"
+              >
+                <SlidersHorizontal className={`h-3 w-3 transition-transform duration-500 ${isSidebarOpen ? "rotate-90" : ""}`} />
+                {isSidebarOpen ? "Close Filters" : "Filter"}
+              </button>
+              <div className="h-6 w-[1px] bg-gray-200 mx-2 hidden sm:block"></div>
+              <div className="cursor-pointer hidden sm:block" onClick={onLogoClick}>
+                <Logo className="h-7" />
+              </div>
+            </div>
+            <div className="text-center">
+                <h3 className="text-lg font-serif font-medium text-luxury-navy capitalize tracking-tight leading-none mb-1">{mode} Portfolio</h3>
+                <p className="text-[9px] text-luxury-gold font-bold uppercase tracking-[0.3em]">{filteredItems.length} Results</p>
             </div>
             <button 
               onClick={onClose}
@@ -768,90 +981,110 @@ const PropertyExplorer = ({ isOpen, onClose, mode }: { isOpen: boolean; onClose:
             </button>
           </div>
 
-          <div className="flex-1 flex overflow-hidden">
+          <div className="flex-1 flex overflow-hidden relative">
             {/* Sidebar Filters */}
-            <aside className="w-80 border-r border-gray-100 p-8 overflow-y-auto bg-luxury-cream">
-              <h4 className="text-xs font-black uppercase tracking-[0.2em] text-luxury-gold mb-8">Refine Search</h4>
-              
-              <div className="space-y-10">
-                <div className="space-y-4">
-                  <label className="text-sm font-bold text-luxury-navy flex items-center gap-2"><MapPin className="h-4 w-4 text-luxury-gold" /> Location</label>
-                  <div className="flex flex-col gap-2">
-                    {["All", "Palm Jumeirah", "Downtown Dubai", "Dubai Hills", "Emirates Hills", "Business Bay", "Dubai Marina"].map(loc => (
-                      <button 
-                        key={loc}
-                        onClick={() => setActiveFilters({...activeFilters, location: loc})}
-                        className={`text-left text-sm py-2 px-4 rounded-lg transition-all ${activeFilters.location === loc ? "bg-luxury-navy text-white shadow-md" : "text-gray-500 hover:bg-white hover:text-luxury-navy"}`}
-                      >
-                        {loc}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {mode !== "projects" ? (
-                  <>
-                    <div className="space-y-4">
-                      <label className="text-sm font-bold text-luxury-navy flex items-center gap-2"><Home className="h-4 w-4 text-luxury-gold" /> Property Type</label>
-                      <div className="flex flex-col gap-2">
-                        {["All", "Villa", "Penthouse", "Estate", "Suite"].map(type => (
-                          <button 
-                            key={type}
-                            onClick={() => setActiveFilters({...activeFilters, type: type})}
-                            className={`text-left text-sm py-2 px-4 rounded-lg transition-all ${activeFilters.type === type ? "bg-luxury-navy text-white shadow-md" : "text-gray-500 hover:bg-white hover:text-luxury-navy"}`}
-                          >
-                            {type}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="space-y-4">
-                      <label className="text-sm font-bold text-luxury-navy flex items-center gap-2"><Star className="h-4 w-4 text-luxury-gold" /> Price Range</label>
-                      <div className="flex flex-col gap-2">
-                        {(mode === "sale" 
-                          ? ["All", "Under 10M", "10M - 25M", "Over 25M"]
-                          : ["All", "Budget", "Premium", "Ultra"]
-                        ).map(range => (
-                          <button 
-                            key={range}
-                            onClick={() => setActiveFilters({...activeFilters, priceRange: range})}
-                            className={`text-left text-sm py-2 px-4 rounded-lg transition-all ${activeFilters.priceRange === range ? "bg-luxury-navy text-white shadow-md" : "text-gray-500 hover:bg-white hover:text-luxury-navy"}`}
-                          >
-                            {range}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <div className="space-y-4">
-                    <label className="text-sm font-bold text-luxury-navy flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-luxury-gold" /> Developer</label>
-                    <div className="flex flex-col gap-2">
-                      {["All", "DAMAC", "SOBHA", "EMAAR", "NAKHEEL", "MERAAS"].map(dev => (
+            <motion.aside 
+              initial={false}
+              animate={{ 
+                width: isSidebarOpen ? 280 : 0,
+                opacity: isSidebarOpen ? 1 : 0,
+                x: isSidebarOpen ? 0 : -280
+              }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="border-r border-gray-100 overflow-y-auto bg-luxury-cream z-10"
+            >
+              <div className="p-6 w-[280px]">
+                <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-luxury-gold mb-6 italic opacity-60">Selection Curation</h4>
+                
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-serif font-medium text-luxury-navy/40 uppercase tracking-[0.2em] flex items-center gap-2 mb-1"><MapPin className="h-3 w-3 text-luxury-gold" /> Location</label>
+                    <div className="flex flex-col gap-0.5">
+                      {["All", "Palm Jumeirah", "Downtown Dubai", "Dubai Hills", "Emirates Hills", "Business Bay", "Dubai Marina"].map(loc => (
                         <button 
-                          key={dev}
-                          onClick={() => setActiveFilters({...activeFilters, developer: dev})}
-                          className={`text-left text-sm py-2 px-4 rounded-lg transition-all ${activeFilters.developer === dev ? "bg-luxury-navy text-white shadow-md" : "text-gray-500 hover:bg-white hover:text-luxury-navy"}`}
+                          key={loc}
+                          onClick={() => setActiveFilters({...activeFilters, location: loc})}
+                          className={`text-left text-[11px] font-serif py-1.5 px-3 rounded-md transition-all ${activeFilters.location === loc ? "bg-white text-luxury-navy shadow-sm ring-1 ring-luxury-navy/5 font-bold" : "text-gray-400 hover:text-luxury-navy"}`}
                         >
-                          {dev}
+                          {loc}
                         </button>
                       ))}
                     </div>
                   </div>
-                )}
 
-                <button 
-                  onClick={() => setActiveFilters({location: "All", type: "All", priceRange: "All", developer: "All"})}
-                  className="w-full py-3 text-xs font-bold uppercase tracking-widest text-red-400 hover:text-red-600 transition-colors border-t border-gray-200 mt-4"
-                >
-                  Reset Filters
-                </button>
+                  {mode !== "projects" ? (
+                    <>
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-serif font-medium text-luxury-navy/40 uppercase tracking-[0.2em] flex items-center gap-2 mb-1"><Home className="h-3 w-3 text-luxury-gold" /> Type</label>
+                        <div className="flex flex-col gap-0.5">
+                          {["All", "Villa", "Penthouse", "Estate", "Suite"].map(type => (
+                            <button 
+                              key={type}
+                              onClick={() => setActiveFilters({...activeFilters, type: type})}
+                              className={`text-left text-[11px] font-serif py-1.5 px-3 rounded-md transition-all ${activeFilters.type === type ? "bg-white text-luxury-navy shadow-sm ring-1 ring-luxury-navy/5 font-bold" : "text-gray-400 hover:text-luxury-navy"}`}
+                            >
+                              {type}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                    <div className="space-y-3">
+                        <label className="text-[10px] font-serif font-medium text-luxury-navy/40 uppercase tracking-[0.2em] flex items-center gap-2 mb-1"><Star className="h-3 w-3 text-luxury-gold" /> Range</label>
+                        <div className="flex flex-col gap-0.5">
+                          {["All", "Under 10M", "10M - 25M", "Over 25M"].map(range => (
+                            <button 
+                              key={range}
+                              onClick={() => setActiveFilters({...activeFilters, priceRange: range})}
+                              className={`text-left text-[11px] font-serif py-1.5 px-3 rounded-md transition-all ${activeFilters.priceRange === range ? "bg-white text-luxury-navy shadow-sm ring-1 ring-luxury-navy/5 font-bold" : "text-gray-400 hover:text-luxury-navy"}`}
+                            >
+                              {range}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-serif font-medium text-luxury-navy/40 uppercase tracking-[0.2em] flex items-center gap-2 mb-1"><CheckCircle2 className="h-3 w-3 text-luxury-gold" /> Developer</label>
+                      <div className="flex flex-col gap-0.5">
+                        {["All", "DAMAC", "SOBHA", "EMAAR", "NAKHEEL", "MERAAS"].map(dev => (
+                          <button 
+                            key={dev}
+                            onClick={() => setActiveFilters({...activeFilters, developer: dev})}
+                            className={`text-left text-[11px] font-serif py-1.5 px-3 rounded-md transition-all ${activeFilters.developer === dev ? "bg-white text-luxury-navy shadow-sm ring-1 ring-luxury-navy/5 font-bold" : "text-gray-400 hover:text-luxury-navy"}`}
+                          >
+                            {dev}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <button 
+                    onClick={() => setActiveFilters({location: "All", type: "All", priceRange: "All", developer: "All"})}
+                    className="w-full py-3 text-[9px] font-black uppercase tracking-[0.3em] text-red-300 hover:text-red-500 transition-colors border-t border-gray-100 mt-4"
+                  >
+                    Clear All
+                  </button>
+                </div>
               </div>
-            </aside>
+            </motion.aside>
+
+            {/* Float Toggle for Mobile or When Hidden */}
+            {!isSidebarOpen && (
+              <motion.button
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                onClick={() => setIsSidebarOpen(true)}
+                className="absolute left-6 bottom-8 z-20 md:hidden bg-luxury-navy text-white p-4 rounded-full shadow-2xl"
+              >
+                <SlidersHorizontal className="h-6 w-6" />
+              </motion.button>
+            )}
 
             {/* Grid Content */}
-            <main className="flex-1 p-8 overflow-y-auto bg-white">
+            <main className="flex-1 p-8 overflow-y-auto bg-white relative">
               {filteredItems.length > 0 ? (
                 <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                   <AnimatePresence mode="popLayout">
@@ -872,7 +1105,15 @@ const PropertyExplorer = ({ isOpen, onClose, mode }: { isOpen: boolean; onClose:
                             </div>
                             <div className="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
                                <p className="text-[10px] font-bold uppercase tracking-widest text-luxury-gold mb-1">Architecture by {item.developer}</p>
-                               <button className="text-xs font-bold flex items-center gap-1 hover:underline">Request Brochure <ArrowRight className="h-3 w-3" /></button>
+                               <button 
+                                 onClick={(e) => {
+                                   e.stopPropagation();
+                                   onOpenDetail({ ...item });
+                                 }}
+                                 className="text-xs font-bold flex items-center gap-1 hover:underline"
+                               >
+                                 Request Brochure <ArrowRight className="h-3 w-3" />
+                               </button>
                             </div>
                           </div>
                           <div className="p-6 flex-1 flex flex-col justify-between">
@@ -899,6 +1140,8 @@ const PropertyExplorer = ({ isOpen, onClose, mode }: { isOpen: boolean; onClose:
                           beds={item.beds}
                           baths={item.baths}
                           size={item.size}
+                          onEnquire={onEnquire}
+                          onOpenDetail={onOpenDetail}
                         />
                       )
                     ))}
@@ -921,12 +1164,56 @@ const PropertyExplorer = ({ isOpen, onClose, mode }: { isOpen: boolean; onClose:
 
 export default function App() {
   const [showContactModal, setShowContactModal] = useState(false);
-  const [explorerMode, setExplorerMode] = useState<"sale" | "rent" | "projects" | null>(null);
+  const [explorerMode, setExplorerMode] = useState<"sale" | "projects" | null>(null);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [searchPurpose, setSearchPurpose] = useState<"buy" | "rent" | "off-plan">("buy");
-  const [beds, setBeds] = useState("Any");
-  const [price, setPrice] = useState("Any");
+  const [searchPurpose, setSearchPurpose] = useState<"buy" | "off-plan">("buy");
   const [selectedAgent, setSelectedAgent] = useState<any>(null);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedProperty, setSelectedProperty] = useState<any>(null);
+
+  const handleLogoReset = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setExplorerMode(null);
+    setShowContactModal(false);
+    setSelectedProperty(null);
+  };
+
+  const handleEnquirySubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    const formData = new FormData(e.target as HTMLFormElement);
+    const data = Object.fromEntries(formData.entries());
+    
+    try {
+      const response = await fetch('/api/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...data, selectedProperty })
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        setFormSubmitted(true);
+        // We keep selectedProperty set so the modal stays open and shows formSubmitted state
+        // Auto-reset after 10 seconds
+        setTimeout(() => {
+          setFormSubmitted(false);
+          setSelectedProperty(null);
+        }, 10000);
+      } else {
+        console.error("Enquiry failed:", result.error);
+        alert("There was an issue sending your request. Please try again or contact us directly.");
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+      alert("Connection error. Please check your internet and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const CustomDropdown = ({ label, icon: Icon, options, current, onSelect, id }: { label: string, icon: any, options: string[], current: string, onSelect: (val: string) => void, id: string }) => (
     <div className="flex-1 w-full px-8 py-5 border-gray-100 last:border-r-0 group relative">
@@ -977,14 +1264,28 @@ export default function App() {
       <Navbar 
         onContactClick={() => setShowContactModal(true)} 
         onSaleClick={() => setExplorerMode("sale")}
-        onRentClick={() => setExplorerMode("rent")}
         onProjectsClick={() => setExplorerMode("projects")}
+        onLogoClick={handleLogoReset}
       />
       <ContactModal isOpen={showContactModal} onClose={() => setShowContactModal(false)} />
       <PropertyExplorer 
         mode={explorerMode || "sale"} 
         isOpen={!!explorerMode} 
         onClose={() => setExplorerMode(null)} 
+        onLogoClick={handleLogoReset}
+        onEnquire={(p) => {
+          setSelectedProperty(p);
+          // When enquiring from explorer, we might want to open the detail modal right away
+        }}
+        onOpenDetail={setSelectedProperty}
+      />
+      <PropertyDetailModal 
+        property={selectedProperty}
+        isOpen={!!selectedProperty}
+        onClose={() => setSelectedProperty(null)}
+        onEnquireSubmit={handleEnquirySubmit}
+        isSubmitting={isSubmitting}
+        formSubmitted={formSubmitted}
       />
       <AgentProfileModal 
         agent={selectedAgent} 
@@ -994,7 +1295,7 @@ export default function App() {
       <Chatbot />
       
       {/* Hero Section */}
-      <section className="relative h-[95vh] w-full overflow-hidden bg-luxury-navy flex items-center" id="hero">
+      <section className="relative h-[110vh] sm:h-[95vh] w-full overflow-hidden bg-luxury-navy flex items-center pt-24 sm:pt-0" id="hero">
         <video 
           autoPlay 
           loop 
@@ -1013,13 +1314,13 @@ export default function App() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
-            <p className="text-luxury-gold font-bold uppercase tracking-[0.4em] text-xs mb-6">Established 2008</p>
+            <p className="text-luxury-gold font-bold uppercase tracking-[0.4em] text-xs mb-6">Established 2020</p>
             <h1 className="mb-8 font-serif text-6xl font-medium sm:text-8xl lg:text-9xl leading-none">
               Your Vision.<br />
               <span className="italic text-luxury-gold">Our Expertise.</span>
             </h1>
             <p className="text-lg font-light text-white/60 max-w-xl mb-12 leading-relaxed">
-              Experience the pinnacle of Dubai real estate. From waterfront villas on the Palm to architectural wonders in Downtown.
+              Experience the pinnacle of Dubai real estate.
             </p>
           </motion.div>
           
@@ -1030,19 +1331,18 @@ export default function App() {
              className="w-full max-w-5xl"
           >
             {/* Purpose Tabs */}
-            <div className="flex gap-2 mb-0 relative z-30 px-2 lg:px-0">
+            <div className="flex gap-1 mb-0 relative z-30 px-2 lg:px-0">
               {[
                 { id: "buy", label: "Sale" },
-                { id: "rent", label: "Rent" },
                 { id: "off-plan", label: "Projects" }
               ].map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setSearchPurpose(tab.id as any)}
-                  className={`px-12 py-5 rounded-t-2xl text-[13px] font-black uppercase tracking-[0.3em] transition-all duration-300 min-w-[160px] ${
+                  className={`px-8 py-3.5 rounded-t-2xl text-[14px] font-serif font-bold tracking-wider transition-all duration-300 min-w-[110px] ${
                     searchPurpose === tab.id 
-                    ? "bg-white text-luxury-navy shadow-[0_-10px_50px_rgba(0,0,0,0.3)] scale-100" 
-                    : "bg-white/10 text-white/60 hover:bg-white/20 hover:text-white backdrop-blur-xl border border-white/10"
+                    ? "bg-white text-luxury-navy shadow-[0_-10px_50px_rgba(0,0,0,0.3)] scale-100 opacity-100" 
+                    : "bg-white/20 text-white hover:bg-white/30 backdrop-blur-xl border border-white/20 opacity-90"
                   }`}
                 >
                   {tab.label}
@@ -1051,43 +1351,21 @@ export default function App() {
             </div>
 
             {/* Main Search Container */}
-            <div className="bg-white shadow-2xl flex flex-col items-center rounded-2xl rounded-tl-none p-2 sm:flex-row relative z-20 border border-luxury-gold/5 w-full mx-auto">
-              <div className="flex-[2] w-full px-8 py-5 sm:border-r border-gray-100 group flex items-center gap-4">
-                <Search className="text-luxury-gold h-5 w-5 opacity-40 group-focus-within:opacity-100 transition-opacity" />
+            <div className="bg-white shadow-2xl flex flex-col items-center rounded-2xl rounded-tl-none p-1 sm:flex-row relative z-20 border border-luxury-gold/20 w-full mx-auto">
+              <div className="flex-[2] w-full px-6 py-4 sm:border-r border-gray-100 group flex items-center gap-3">
+                <Search className="text-luxury-navy h-5 w-5 stroke-[2.5px] opacity-90 group-focus-within:opacity-100 transition-opacity" />
                 <div className="flex flex-col w-full">
-                  <span className="text-[10px] font-black uppercase tracking-[0.1em] text-gray-400 mb-0.5">Location</span>
+                  <span className="text-[10px] font-sans font-black uppercase tracking-[0.1em] text-black mb-0.5">Location</span>
                   <input 
                     type="text" 
                     placeholder="District, Project or Keyword" 
-                    className="w-full bg-transparent text-luxury-navy placeholder-luxury-navy/20 outline-none font-black uppercase tracking-widest text-[11px] placeholder:font-light"
+                    className="w-full bg-transparent text-luxury-navy placeholder-luxury-navy/60 outline-none font-serif font-bold tracking-wide text-[15px]"
                   />
                 </div>
               </div>
-              
-              <CustomDropdown 
-                id="beds"
-                label="Beds" 
-                icon={Home} 
-                options={["Any", "Studio", "1 Bed", "2 Beds", "3 Beds", "4+ Beds"]} 
-                current={beds}
-                onSelect={setBeds}
-              />
-
-              <CustomDropdown 
-                id="price"
-                label="Price Range" 
-                icon={Tag} 
-                options={searchPurpose === "rent" 
-                  ? ["Any", "Under 100K", "100K - 250K", "Over 250K"]
-                  : ["Any", "Under 5M", "5M - 15M", "Over 15M"]
-                } 
-                current={price}
-                onSelect={setPrice}
-              />
-
               <button 
-                onClick={() => setExplorerMode(searchPurpose === "off-plan" ? "projects" : searchPurpose === "rent" ? "rent" : "sale")}
-                className="gold-gradient w-full rounded-xl px-12 py-5 font-black uppercase tracking-[0.3em] text-[10px] text-white sm:w-auto transition-all hover:scale-[1.02] active:scale-95 shadow-2xl hover:shadow-luxury-gold/30"
+                onClick={() => setExplorerMode(searchPurpose === "off-plan" ? "projects" : "sale")}
+                className="gold-gradient w-full rounded-xl px-14 py-4 font-serif font-medium tracking-wider text-[15px] text-white sm:w-auto transition-all hover:scale-[1.02] active:scale-95 shadow-2xl hover:shadow-luxury-gold/30"
               >
                 Search
               </button>
@@ -1108,7 +1386,7 @@ export default function App() {
             {[
               { icon: Home, title: "Selling a Property", desc: "Our multi-award-winning sales team is ready to sell your property at the best price." },
               { icon: Search, title: "Buying a Property", desc: "Explore thousands of properties matching your dream luxury lifestyle in Dubai." },
-              { icon: Key, title: "Renting a Property", desc: "Expert rental services to help you find the perfect villa or apartment." },
+              { icon: ShieldCheck, title: "Investment Strategy", desc: "Bespoke advice on maximizing returns through high-yield Dubai assets." },
               { icon: Star, title: "Branded Residences", desc: "Exclusive access to top branded developments in the UAE." }
             ].map((service) => (
               <motion.div 
@@ -1127,7 +1405,7 @@ export default function App() {
         </div>
 
         {/* Partner Logos - Rolling Marquee */}
-        <div className="mt-24 border-y border-gray-100 py-10 bg-white overflow-hidden flex items-center">
+        <div className="mt-24 border-y border-gray-100 py-8 bg-white overflow-hidden flex items-center max-w-5xl mx-auto">
           <div className="relative flex overflow-hidden w-full">
             <motion.div 
               animate={{ x: [0, -1035] }}
@@ -1137,6 +1415,71 @@ export default function App() {
               {["EMAAR", "DAMAC", "NAKHEEL", "SOBHA", "MERAAS", "BINGHATTI", "EMAAR", "DAMAC", "NAKHEEL", "SOBHA", "MERAAS", "BINGHATTI"].map((dev, i) => (
                 <span key={i} className={`text-2xl font-serif font-black opacity-20 hover:opacity-100 transition-opacity cursor-default ${i % 2 === 0 ? 'italic' : ''}`}>{dev}</span>
               ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Market Intelligence Section */}
+      <section className="py-24 bg-luxury-navy text-white overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-blue-500/5 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2" />
+        <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <p className="text-luxury-gold font-black uppercase tracking-[0.4em] text-xs mb-6">Market Intelligence</p>
+              <h2 className="text-4xl sm:text-5xl font-serif font-medium leading-tight mb-8">
+                In the Current <br /><span className="italic text-luxury-gold">Global Dynamics,</span>
+              </h2>
+              <p className="text-xl text-gray-300 font-light leading-relaxed mb-10">
+                Mastering the 2026 landscape to provide exclusive foresight into the future of the UAE's most prestigious real estate markets.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6">
+                <a 
+                  href="https://www.instagram.com/braavos_dubai?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-white text-luxury-navy rounded-xl font-bold uppercase tracking-widest text-[10px] hover:bg-luxury-gold hover:text-white transition-all group shadow-xl"
+                >
+                  <Instagram className="h-4 w-4" /> Instagram Account
+                </a>
+                <div className="flex items-center gap-4">
+                  <div className="h-12 w-12 rounded-full border border-white/20 flex items-center justify-center">
+                    <TrendingUp className="h-5 w-5 text-luxury-gold" />
+                  </div>
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] leading-relaxed text-luxury-gold">Market Updates <br />& Insights</p>
+                </div>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="aspect-video rounded-3xl overflow-hidden shadow-2xl border border-white/10 group relative">
+                <img 
+                  src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&q=80&w=1200" 
+                  alt="Dubai Real Estate Trends" 
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="h-20 w-20 rounded-full border-2 border-white flex items-center justify-center backdrop-blur-sm">
+                    <Play className="h-8 w-8 text-white fill-white" />
+                  </div>
+                </div>
+              </div>
+              <div className="absolute -bottom-8 -left-8 bg-luxury-gold p-8 rounded-2xl shadow-2xl max-w-[280px]">
+                <p className="text-white font-serif text-3xl italic leading-none">Market Expert</p>
+                <div className="h-px w-full bg-white/20 my-4" />
+                <p className="text-white font-black uppercase tracking-[0.3em] text-[10px]">Mr. Qaiser Shahzad Bajwa</p>
+                <p className="text-white/70 text-[9px] uppercase tracking-widest mt-2">CEO & Founder, Braavos Real Estate</p>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -1181,9 +1524,9 @@ export default function App() {
             >
               <div className="aspect-[4/5] overflow-hidden rounded-3xl shadow-2xl relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&q=80&w=1000" 
-                  alt="Dubai Skyline View" 
-                  className="h-full w-full object-cover"
+                  src="https://i.imgur.com/mvDTm2K.png" 
+                  alt="Braavos Real Estate" 
+                  className="h-full w-full object-cover transition-transform duration-1000 hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-luxury-navy/60 to-transparent" />
                 <div className="absolute bottom-12 left-12 right-12 text-white">
@@ -1218,11 +1561,11 @@ export default function App() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
             <div className="max-w-2xl">
-              <p className="text-luxury-gold font-black uppercase tracking-[0.4em] text-xs mb-4">Our Elite Team</p>
+                  <p className="text-luxury-gold font-black uppercase tracking-[0.4em] text-xs mb-4">MEET THE EXPERTS</p>
               <h2 className="text-5xl font-serif font-medium leading-tight">Mastering the Art of <br /><span className="italic">Dubai Real Estate.</span></h2>
             </div>
             <p className="text-gray-400 font-light max-w-sm leading-relaxed">
-              With over 15 years of market dominance, our specialized agents provide unparalleled access to off-market opportunities and bespoke investment strategies.
+              By leveraging elite market intelligence and exclusive industry networks, our brokers provide unparalleled access to off-market opportunities and bespoke investment strategies.
             </p>
           </div>
 
@@ -1237,15 +1580,15 @@ export default function App() {
                 className="group cursor-pointer"
                 onClick={() => setSelectedAgent(agent)}
               >
-                <div className="aspect-[3/4] overflow-hidden rounded-2xl mb-4 relative bg-gray-100">
+                <div className="aspect-[4/5] overflow-hidden rounded-2xl mb-4 relative bg-gray-50 flex items-center justify-center border border-gray-100/50 shadow-inner group-hover:border-luxury-gold/30 transition-colors">
                   <img 
                     src={agent.image} 
                     alt={agent.name} 
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                    className="h-full w-full object-contain transition-all duration-700 group-hover:scale-[1.03]" 
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-luxury-navy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-                    <p className="text-[10px] font-black uppercase tracking-widest text-luxury-gold mb-1">{agent.specialty}</p>
-                    <p className="text-[10px] text-white/60 uppercase tracking-widest leading-tight">{agent.languages}</p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-luxury-navy/90 via-luxury-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-6 translate-y-4 group-hover:translate-y-0">
+                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-luxury-gold mb-1">{agent.specialty}</p>
+                    <p className="text-[9px] text-white/70 uppercase tracking-[0.3em] leading-tight font-medium">{agent.languages}</p>
                   </div>
                 </div>
                 <h4 className="text-sm font-serif font-bold text-luxury-navy group-hover:text-luxury-gold transition-colors">{agent.name}</h4>
@@ -1285,6 +1628,8 @@ export default function App() {
                   beds={p.beds}
                   baths={p.baths}
                   size={p.size}
+                  onEnquire={setSelectedProperty}
+                  onOpenDetail={setSelectedProperty}
                 />
               ))}
              </AnimatePresence>
@@ -1305,7 +1650,7 @@ export default function App() {
               <div className="lg:col-span-1 space-y-8">
                 <div className="p-8 bg-luxury-cream rounded-3xl border border-luxury-gold/10">
                    <h3 className="text-2xl font-serif mb-4 flex items-center gap-3"><ShieldCheck className="text-luxury-gold" /> Integrity</h3>
-                   <p className="text-gray-600 text-sm leading-relaxed">Over 15 years of transparent dealing in the Dubai market, building lifelong relationships with our global clientele.</p>
+                   <p className="text-gray-600 text-sm leading-relaxed">Built on a foundation of elite industry expertise, Braavos ensures transparent dealing and lifelong relationships with our global clientele.</p>
                 </div>
                 <div className="p-8 bg-luxury-cream rounded-3xl border border-luxury-gold/10">
                    <h3 className="text-2xl font-serif mb-4 flex items-center gap-3"><Zap className="text-luxury-gold" /> Efficiency</h3>
@@ -1354,56 +1699,88 @@ export default function App() {
              <div className="lg:w-1/3 gold-gradient p-12 text-white flex flex-col justify-between">
                 <div>
                   <h2 className="text-4xl font-serif mb-6">Speak with our specialists today.</h2>
-                  <p className="opacity-90 mb-8 font-light">Whether you're looking to buy, sell, or rent, our team is here to guide you through every step of your real estate journey in Dubai.</p>
+                  <p className="opacity-90 mb-8 font-light">Whether you're looking to buy, sell, or invest, our team is here to guide you through every step of your real estate journey in Dubai.</p>
                 </div>
                 <div className="space-y-6">
                   <div className="flex items-center gap-4">
                     <div className="h-10 w-10 flex items-center justify-center rounded-full bg-white/20"><Phone className="h-5 w-5" /></div>
                     <div>
                       <p className="text-xs uppercase font-bold tracking-widest opacity-70">Enquiry Hotline</p>
-                      <p className="font-bold">+971 4 321 0000</p>
+                      <p className="font-bold">
+                        <a href="tel:+971586522515" className="hover:text-luxury-gold transition-colors">+971 58 652 2515</a>
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
                     <div className="h-10 w-10 flex items-center justify-center rounded-full bg-white/20"><Mail className="h-5 w-5" /></div>
                     <div>
                       <p className="text-xs uppercase font-bold tracking-widest opacity-70">Email Address</p>
-                      <p className="font-bold">info@braavos.ae</p>
+                      <p className="font-bold">
+                        <a href="mailto:braavosrealestate@gmail.com" className="hover:text-luxury-gold transition-colors">braavosrealestate@gmail.com</a>
+                      </p>
                     </div>
                   </div>
                 </div>
              </div>
              <div className="lg:w-2/3 p-12">
-                <form className="grid sm:grid-cols-2 gap-6" onSubmit={(e) => e.preventDefault()}>
-                  <div className="space-y-1">
-                    <label className="text-xs font-bold uppercase tracking-widest text-gray-500">First Name</label>
-                    <input type="text" className="w-full border-b border-gray-200 py-2 focus:border-luxury-gold outline-none transition-colors" placeholder="John" />
-                  </div>
-                  <div className="space-y-1">
-                    <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Last Name</label>
-                    <input type="text" className="w-full border-b border-gray-200 py-2 focus:border-luxury-gold outline-none transition-colors" placeholder="Doe" />
-                  </div>
-                  <div className="space-y-1">
-                    <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Email Address</label>
-                    <input type="email" className="w-full border-b border-gray-200 py-2 focus:border-luxury-gold outline-none transition-colors" placeholder="john@example.com" />
-                  </div>
-                  <div className="space-y-1">
-                    <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Phone Number</label>
-                    <input type="tel" className="w-full border-b border-gray-200 py-2 focus:border-luxury-gold outline-none transition-colors" placeholder="+971 00 000 0000" />
-                  </div>
-                  <div className="sm:col-span-2 space-y-1">
-                    <label className="text-xs font-bold uppercase tracking-widest text-gray-500">How can we help you?</label>
-                    <textarea rows={4} className="w-full border border-gray-200 p-4 rounded-xl focus:border-luxury-gold outline-none transition-colors resize-none" placeholder="Tell us more about your property requirements..."></textarea>
-                  </div>
-                  <div className="sm:col-span-2">
+                {formSubmitted ? (
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="h-full flex flex-col items-center justify-center text-center p-12 bg-luxury-cream/30 rounded-2xl"
+                  >
+                    <div className="h-20 w-20 rounded-full bg-luxury-gold text-white flex items-center justify-center mb-6 shadow-xl">
+                      <CheckCircle2 className="h-10 w-10" />
+                    </div>
+                    <h3 className="text-3xl font-serif text-luxury-navy mb-4">Request Sent</h3>
+                    <p className="text-gray-500 max-w-sm">Thank you for your interest. One of our property specialists will contact you shortly.</p>
                     <button 
-                      type="submit"
-                      className="gold-gradient w-full py-5 rounded-xl text-white font-bold uppercase tracking-[0.2em] shadow-lg hover:shadow-2xl transition-all hover:scale-[1.01] active:scale-[0.99]"
+                      onClick={() => setFormSubmitted(false)}
+                      className="mt-8 text-xs font-bold uppercase tracking-widest text-luxury-gold hover:underline"
                     >
-                      Submit Enquiry
+                      Send another request
                     </button>
-                  </div>
-                </form>
+                  </motion.div>
+                ) : (
+                  <form className="grid sm:grid-cols-2 gap-6" onSubmit={handleEnquirySubmit}>
+                    <div className="space-y-1">
+                      <label className="text-xs font-bold uppercase tracking-widest text-gray-500">First Name</label>
+                      <input type="text" name="firstName" required className="w-full border-b border-gray-200 py-2 focus:border-luxury-gold outline-none transition-colors" placeholder="John" />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Last Name</label>
+                      <input type="text" name="lastName" required className="w-full border-b border-gray-200 py-2 focus:border-luxury-gold outline-none transition-colors" placeholder="Doe" />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Email Address</label>
+                      <input type="email" name="email" required className="w-full border-b border-gray-200 py-2 focus:border-luxury-gold outline-none transition-colors" placeholder="john@example.com" />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Phone Number</label>
+                      <input type="tel" name="phone" required className="w-full border-b border-gray-200 py-2 focus:border-luxury-gold outline-none transition-colors" placeholder="+971 00 000 0000" />
+                    </div>
+                    <div className="sm:col-span-2 space-y-1">
+                      <label className="text-xs font-bold uppercase tracking-widest text-gray-500">How can we help you?</label>
+                      <textarea name="message" rows={4} required className="w-full border border-gray-200 p-4 rounded-xl focus:border-luxury-gold outline-none transition-colors resize-none" placeholder="Tell us more about your property requirements..."></textarea>
+                    </div>
+                    <div className="sm:col-span-2">
+                      <button 
+                         type="submit"
+                         disabled={isSubmitting}
+                         className={`gold-gradient w-full py-5 rounded-xl text-white font-bold uppercase tracking-[0.2em] shadow-lg hover:shadow-2xl transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-3 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                       >
+                         {isSubmitting ? (
+                           <>
+                             <div className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                             Sending...
+                           </>
+                         ) : (
+                           "Submit Enquiry"
+                         )}
+                       </button>
+                    </div>
+                  </form>
+                )}
              </div>
           </div>
         </div>
@@ -1414,11 +1791,14 @@ export default function App() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
            <div className="grid lg:grid-cols-4 gap-12 mb-16">
               <div className="lg:col-span-1">
-                <Logo className="h-8 mb-8" light />
+                <div className="cursor-pointer inline-block" onClick={handleLogoReset}>
+                  <Logo className="h-12 mb-8" light />
+                </div>
                 <p className="text-sm text-gray-400 leading-relaxed mb-8 font-light">Dubai's premier boutique real estate agency specializing in ultra-luxury properties across the most prestigious developments in the city.</p>
                 <div className="flex gap-6">
-                  <Instagram className="h-5 w-5 text-luxury-gold cursor-pointer hover:scale-110 transition-all hover:text-white" />
-                  <Facebook className="h-5 w-5 text-luxury-gold cursor-pointer hover:scale-110 transition-all hover:text-white" />
+                  <a href="https://www.instagram.com/braavos_dubai?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">
+                    <Instagram className="h-5 w-5 text-luxury-gold cursor-pointer hover:scale-110 transition-all hover:text-white" />
+                  </a>
                   <Linkedin className="h-5 w-5 text-luxury-gold cursor-pointer hover:scale-110 transition-all hover:text-white" />
                 </div>
               </div>
@@ -1426,7 +1806,7 @@ export default function App() {
                 <h4 className="font-serif text-xl mb-6 text-luxury-gold">Browse</h4>
                 <ul className="space-y-4 text-sm text-gray-400 font-medium">
                   <li><a href="#" className="hover:text-white transition-colors">Residential For Sale</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">Residential For Rent</a></li>
+                  <li><a href="#" className="hover:text-white transition-colors">Market Analysis</a></li>
                   <li><a href="#" className="hover:text-white transition-colors">New Developments</a></li>
                   <li><a href="#" className="hover:text-white transition-colors">Commercial Real Estate</a></li>
                 </ul>
@@ -1435,23 +1815,23 @@ export default function App() {
                  <h4 className="font-serif text-xl mb-6 text-luxury-gold">Company</h4>
                  <ul className="space-y-4 text-sm text-gray-400 font-medium">
                    <li><a href="#about" className="hover:text-white transition-colors">About Braavos</a></li>
-                   <li><a href="#agents" className="hover:text-white transition-colors">Our Specialists</a></li>
+                   <li><a href="#agents" className="hover:text-white transition-colors">Brokers</a></li>
                    <li><a href="#services" className="hover:text-white transition-colors">Latest News</a></li>
                    <li><a href="#contact" className="hover:text-white transition-colors">Careers</a></li>
                  </ul>
               </div>
               <div>
                  <h4 className="font-serif text-xl mb-6 text-luxury-gold">Head Office</h4>
-                 <p className="text-sm text-gray-400 mb-4">Level 42, Marina Tower,<br />Dubai Marina, Dubai, UAE</p>
+                 <p className="text-sm text-gray-400 mb-4">Prime Business Centre, JVC,<br />Dubai, UAE</p>
                  <p className="text-sm text-gray-400">ORN: 1234<br />BRN: 5678</p>
               </div>
            </div>
            <div className="border-t border-white/10 pt-12 flex flex-col sm:flex-row justify-between items-center gap-6">
-              <p className="text-xs text-gray-500">© 2024 Braavos Real Estate. All rights reserved.</p>
-              <div className="flex gap-8 text-xs text-gray-500 uppercase font-bold tracking-widest">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Complaints</a>
+              <p className="text-xs text-gray-500 font-serif">© 2024 Braavos Real Estate. All rights reserved.</p>
+              <div className="flex gap-8 text-xs text-gray-500 font-serif font-medium tracking-wide">
+                <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+                <a href="#" className="hover:text-white transition-colors">Complaints</a>
               </div>
            </div>
         </div>
