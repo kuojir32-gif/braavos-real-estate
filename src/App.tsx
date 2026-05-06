@@ -1862,7 +1862,7 @@ export default function App() {
               </div>
               <div>
                  <h4 className="font-serif text-xl mb-6 text-luxury-gold">Head Office</h4>
-                 <p className="text-sm text-gray-400 mb-4">1201B Building A,<br />Dubai, UAE</p>
+                 <p className="text-sm text-gray-400 mb-4">1201B Building A,<br />Prime Business Centre, JVC,<br />Dubai, UAE</p>
                  <p className="text-sm text-gray-400">ORN: 23772</p>
               </div>
            </div>
