@@ -186,7 +186,7 @@ const PropertyDetailModal = ({ property, isOpen, onClose, onEnquireSubmit, isSub
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[150] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 md:p-8"
+          className="fixed inset-0 z-[320] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 md:p-8"
           onClick={onClose}
         >
           <motion.div 
@@ -439,11 +439,12 @@ const Logo = ({ className = "h-12", light }: LogoProps) => {
   );
 };
 
-const Navbar = ({ onContactClick, onSaleClick, onProjectsClick, onLogoClick }: { 
+const Navbar = ({ onContactClick, onSaleClick, onProjectsClick, onLogoClick, onBrokersClick }: { 
   onContactClick: () => void;
   onSaleClick: () => void;
   onProjectsClick: () => void;
   onLogoClick: () => void;
+  onBrokersClick: () => void;
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -459,7 +460,7 @@ const Navbar = ({ onContactClick, onSaleClick, onProjectsClick, onLogoClick }: {
     { name: "Projects", action: onProjectsClick },
     { name: "Services", link: "#services" },
     { name: "About", link: "#about" },
-    { name: "Brokers", link: "#agents" }
+    { name: "Brokers", action: onBrokersClick }
   ];
 
   const handleLogoClick = () => {
@@ -531,9 +532,9 @@ const Navbar = ({ onContactClick, onSaleClick, onProjectsClick, onLogoClick }: {
                     key={item.name} 
                     href={item.link} 
                     onClick={() => setIsMenuOpen(false)}
-                    className="text-xl font-serif font-medium text-luxury-navy"
+                    className="text-xl font-serif font-medium text-luxury-navy flex justify-between items-center"
                   >
-                    {item.name}
+                    {item.name} <ArrowRight className="h-4 w-4 text-luxury-gold" />
                   </a>
                 )
               ))}
@@ -554,7 +555,7 @@ const Navbar = ({ onContactClick, onSaleClick, onProjectsClick, onLogoClick }: {
 const ContactModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => (
   <AnimatePresence>
     {isOpen && (
-      <div className="fixed inset-0 z-[160] flex items-center justify-center p-6">
+      <div className="fixed inset-0 z-[300] flex items-center justify-center p-6">
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -611,7 +612,7 @@ const ContactModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
 const AgentProfileModal = ({ agent, isOpen, onClose }: { agent: any; isOpen: boolean; onClose: () => void }) => (
   <AnimatePresence>
     {isOpen && agent && (
-      <div className="fixed inset-0 z-[120] flex items-center justify-center p-6">
+      <div className="fixed inset-0 z-[310] flex items-center justify-center p-6">
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -1135,6 +1136,7 @@ const PropertyExplorer = ({ isOpen, onClose, mode, onLogoClick, onEnquire, onOpe
 
 export default function App() {
   const [showContactModal, setShowContactModal] = useState(false);
+  const [showMobileBrokers, setShowMobileBrokers] = useState(false);
   const [explorerMode, setExplorerMode] = useState<"sale" | "projects" | null>(null);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [searchPurpose, setSearchPurpose] = useState<"buy" | "off-plan">("buy");
@@ -1142,6 +1144,17 @@ export default function App() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState<any>(null);
+
+  const handleBrokersClick = () => {
+    if (window.innerWidth < 1024) {
+      setShowMobileBrokers(true);
+    } else {
+      const el = document.getElementById('agents');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   const handleLogoReset = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1237,8 +1250,64 @@ export default function App() {
         onSaleClick={() => setExplorerMode("sale")}
         onProjectsClick={() => setExplorerMode("projects")}
         onLogoClick={handleLogoReset}
+        onBrokersClick={handleBrokersClick}
       />
       <ContactModal isOpen={showContactModal} onClose={() => setShowContactModal(false)} />
+      
+      {/* Mobile Brokers View (Diffrent Tab experience) */}
+      <AnimatePresence>
+        {showMobileBrokers && (
+          <motion.div 
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            className="fixed inset-0 z-[200] bg-white overflow-y-auto px-6 py-24"
+          >
+            <div className="flex justify-between items-center mb-12">
+              <div>
+                <p className="text-luxury-gold font-black uppercase tracking-[0.4em] text-[10px] mb-2">Our Professionals</p>
+                <h2 className="text-4xl font-serif font-bold text-luxury-navy">Brokers</h2>
+              </div>
+              <button 
+                onClick={() => setShowMobileBrokers(false)}
+                className="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center text-luxury-navy"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+               {FAKE_AGENTS.map((agent) => (
+                 <div 
+                   key={agent.id} 
+                   className="flex flex-col gap-2"
+                   onClick={() => {
+                     setSelectedAgent(agent);
+                     // Keep mobile brokers open so when they close agent profile they are still in "Brokers tab"
+                   }}
+                 >
+                    <div className="aspect-[4/5] rounded-xl overflow-hidden bg-gray-50 border border-gray-100 p-2">
+                       <img src={agent.image} alt={agent.name} className="w-full h-full object-contain" />
+                    </div>
+                    <p className="text-[10px] font-bold text-luxury-navy leading-tight">{agent.name}</p>
+                    <p className="text-[8px] uppercase tracking-widest text-luxury-gold">{agent.specialty}</p>
+                 </div>
+               ))}
+            </div>
+            
+            <div className="mt-12 p-8 bg-luxury-cream rounded-3xl text-center">
+              <p className="text-sm text-gray-500 mb-4 italic">Need immediate assistance?</p>
+              <button 
+                onClick={() => { setShowMobileBrokers(false); setShowContactModal(true); }}
+                className="w-full py-4 gold-gradient rounded-xl text-white font-serif font-bold"
+              >
+                Speak with Management
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <PropertyExplorer 
         mode={explorerMode || "sale"} 
         isOpen={!!explorerMode} 
@@ -1445,11 +1514,11 @@ export default function App() {
                   </div>
                 </div>
               </div>
-              <div className="absolute -bottom-8 -left-8 bg-luxury-gold p-8 rounded-2xl shadow-2xl max-w-[280px]">
-                <p className="text-white font-serif text-3xl italic leading-none">Market Expert</p>
+              <div className="absolute -bottom-6 left-0 sm:-left-4 bg-luxury-gold p-6 rounded-2xl shadow-2xl max-w-[240px]">
+                <p className="text-white font-serif text-2xl italic leading-none">Market Expert</p>
                 <div className="h-px w-full bg-white/20 my-4" />
-                <p className="text-white font-black uppercase tracking-[0.3em] text-[10px]">Mr. Qaiser Shahzad Bajwa</p>
-                <p className="text-white/70 text-[9px] uppercase tracking-widest mt-2">CEO & Founder, Braavos Real Estate</p>
+                <p className="text-white font-black uppercase tracking-[0.3em] text-[9px]">Mr. Qaiser Shahzad Bajwa</p>
+                <p className="text-white/70 text-[8px] uppercase tracking-widest mt-2">CEO & Founder, Braavos Real Estate</p>
               </div>
             </motion.div>
           </div>
@@ -1528,7 +1597,7 @@ export default function App() {
       </section>
 
       {/* About Section */}
-      <section className="py-32 bg-white" id="agents">
+      <section className="py-32 bg-white hidden lg:block" id="agents">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
             <div className="max-w-2xl">
@@ -1793,8 +1862,8 @@ export default function App() {
               </div>
               <div>
                  <h4 className="font-serif text-xl mb-6 text-luxury-gold">Head Office</h4>
-                 <p className="text-sm text-gray-400 mb-4">Prime Business Centre, JVC,<br />Dubai, UAE</p>
-                 <p className="text-sm text-gray-400">ORN: 1234<br />BRN: 5678</p>
+                 <p className="text-sm text-gray-400 mb-4">1201B Building A,<br />Dubai, UAE</p>
+                 <p className="text-sm text-gray-400">ORN: 23772</p>
               </div>
            </div>
            <div className="border-t border-white/10 pt-12 flex flex-col sm:flex-row justify-between items-center gap-6">
