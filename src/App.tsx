@@ -574,25 +574,25 @@ const ContactModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
             <p className="opacity-80 text-[10px] font-black uppercase tracking-[0.5em]">Luxury Real Estate</p>
           </div>
           <div className="p-10 space-y-8">
-            <div className="flex items-center gap-6 p-6 rounded-2xl bg-luxury-cream border border-luxury-gold/10 hover:border-luxury-gold transition-colors group">
-              <div className="h-12 w-12 flex items-center justify-center rounded-full bg-white text-luxury-gold shadow-lg group-hover:scale-110 transition-transform">
-                <Phone className="h-6 w-6" />
+            <div className="flex items-center gap-4 p-4 rounded-2xl bg-luxury-cream border border-luxury-gold/10 hover:border-luxury-gold transition-colors group">
+              <div className="h-10 w-10 flex items-center justify-center rounded-full bg-white text-luxury-gold shadow-lg group-hover:scale-110 transition-transform">
+                <Phone className="h-5 w-5" />
               </div>
               <div>
                 <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Call Our Office</p>
-                <p className="text-xl font-bold text-luxury-navy">
+                <p className="text-base font-bold text-luxury-navy">
                   <a href="tel:+971586522515" className="hover:text-luxury-gold transition-colors">+971 58 652 2515</a>
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-6 p-6 rounded-2xl bg-luxury-cream border border-luxury-gold/10 hover:border-luxury-gold transition-colors group">
-              <div className="h-12 w-12 flex items-center justify-center rounded-full bg-white text-luxury-gold shadow-lg group-hover:scale-110 transition-transform">
-                <Mail className="h-6 w-6" />
+            <div className="flex items-center gap-4 p-4 rounded-2xl bg-luxury-cream border border-luxury-gold/10 hover:border-luxury-gold transition-colors group">
+              <div className="h-10 w-10 flex items-center justify-center rounded-full bg-white text-luxury-gold shadow-lg group-hover:scale-110 transition-transform">
+                <Mail className="h-5 w-5" />
               </div>
               <div>
                 <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Email Us</p>
-                <p className="text-xl font-bold text-luxury-navy">
-                  <a href="mailto:braavosrealestate@gmail.com" className="hover:text-luxury-gold transition-colors">braavosrealestate@gmail.com</a>
+                <p className="text-sm font-bold text-luxury-navy">
+                  <a href="mailto:braavosrealestate@gmail.com" className="hover:text-luxury-gold transition-colors break-all">braavosrealestate@gmail.com</a>
                 </p>
               </div>
             </div>
