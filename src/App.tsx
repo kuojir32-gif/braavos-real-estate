@@ -155,38 +155,9 @@ const FAKE_AGENTS = [
   }
 ];
 
-const FAKE_PROPERTIES = Array.from({ length: 30 }, (_, i) => ({
-  id: i + 1,
-  purpose: "sale",
-  image: `https://images.unsplash.com/photo-${[
-    "1512917774080-9991f1c4c750", "1600585154340-be6161a56a0c", "1600607687940-4e2a09695d51", 
-    "1600566753190-17f0bb2a6c3e", "1600210492486-724fe5c67fb0", "1580587767378-7827a6e414c8",
-    "1512918766775-d5ee3dfde113", "1613490491599-45d0d7a84bb4", "1613977257363-707ba9f58220",
-    "1564013799919-ab600027ffc6", "1592595808347-118fb27da259", "1507089947368-19c1ad974541",
-    "1512915920391-382cd013e8c0", "1600585154542-6331f9387001", "1600047509807-ba8f99d2cdde",
-    "1600570997594-3bc88f98c6b9", "1600566753086-00f18fb6b3ea", "1600607687644-c7171ef3f096",
-    "1600585152223-144b62475993", "1605141830624-74746f91572f"
-  ][i % 20]}?auto=format&fit=crop&q=80&w=1000`,
-  price: `AED ${(5 + Math.random() * 50).toFixed(1)}M`,
-  title: `Luxury Property ${i + 1} - Premium ${["Villa", "Penthouse", "Estate", "Suite"][i % 4]}`,
-  location: ["Palm Jumeirah", "Downtown Dubai", "Dubai Hills", "Emirates Hills", "Business Bay"][i % 5],
-  beds: 3 + (i % 4),
-  baths: 4 + (i % 3),
-  size: (2500 + i * 450).toLocaleString()
-}));
+const FAKE_PROPERTIES: any[] = [];
 
-const FAKE_PROJECTS = Array.from({ length: 12 }, (_, i) => ({
-  id: i + 1,
-  image: `https://images.unsplash.com/photo-${[
-    "1597659840241-37e2b9c2f55f", "1545324418-cc1a3fa10c00", "1570129477492-45c003edd2be",
-    "1512917774080-9991f1c4c750", "1600585154340-be6161a56a0c", "1600607687940-4e2a09695d51"
-  ][i % 6]}?auto=format&fit=crop&q=80&w=1000`,
-  title: `Project ${["Residence", "Towers", "Lakeside", "Heights"][i % 4]} ${i + 1}`,
-  developer: ["DAMAC", "SOBHA", "EMAAR", "NAKHEEL", "MERAAS"][i % 5],
-  location: ["Business Bay", "Dubai Marina", "JVC", "Meydan"][i % 4],
-  status: ["Off-plan", "Ready 2025", "Ready 2026"][i % 3]
-}));
-
+const FAKE_PROJECTS: any[] = [];
 const FAKE_REVIEWS = [
   { name: "Sarah Jenkins", role: "CEO, Tech Ventures", text: "Braavos handled my relocation with absolute precision. The penthouse they found in Downtown is breathtaking." },
   { name: "Khalid Al-Maktoum", role: "Private Investor", text: "Their portfolio of off-market properties is unmatched in Dubai. A truly bespoke service for serious buyers." },
