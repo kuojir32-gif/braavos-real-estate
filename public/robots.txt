@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ais-pre-6xzi3yokfkkb37xlxgsddd-825944158721.europe-west2.run.app/sitemap.xml
+Sitemap: https://braavosrealestate.ae/sitemap.xml
