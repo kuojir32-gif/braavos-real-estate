@@ -698,8 +698,8 @@ const AgentProfileModal = ({ agent, isOpen, onClose }: { agent: any; isOpen: boo
           exit={{ opacity: 0, scale: 0.95, y: 30 }}
           className="relative w-full max-w-4xl bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row h-[85vh] md:h-auto"
         >
-          <div className="md:w-1/3 bg-luxury-navy flex items-center justify-center relative overflow-hidden group">
-            <img src={agent.image} alt={agent.name} className="h-full w-full object-contain opacity-90 transition-transform duration-1000" />
+            <div className="md:w-1/3 bg-luxury-navy flex items-center justify-center relative overflow-hidden group">
+            <img src={agent.image} alt={agent.name} className="h-full w-full object-cover opacity-90 transition-transform duration-1000 group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-luxury-navy/60 via-transparent to-transparent p-8 flex flex-col justify-end pointer-events-none">
               <h2 className="text-3xl font-serif font-bold text-white mb-2">{agent.name}</h2>
               <p className="text-luxury-gold font-bold uppercase tracking-widest text-xs">{agent.role}</p>
@@ -1359,8 +1359,8 @@ export default function App() {
                      // Keep mobile brokers open so when they close agent profile they are still in "Brokers tab"
                    }}
                  >
-                    <div className="aspect-[4/5] rounded-xl overflow-hidden bg-gray-50 border border-gray-100 p-2">
-                       <img src={agent.image} alt={agent.name} className="w-full h-full object-contain" />
+                    <div className="aspect-[4/5] rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
+                       <img src={agent.image} alt={agent.name} className="w-full h-full object-cover" />
                     </div>
                     <p className="text-[10px] font-bold text-luxury-navy leading-tight">{agent.name}</p>
                     <p className="text-[8px] uppercase tracking-widest text-luxury-gold">{agent.specialty}</p>
@@ -1696,7 +1696,7 @@ export default function App() {
                   <img 
                     src={agent.image} 
                     alt={agent.name} 
-                    className="h-full w-full object-contain transition-all duration-700 group-hover:scale-[1.03]" 
+                    className="h-full w-full object-cover transition-all duration-700 group-hover:scale-110" 
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-luxury-navy/90 via-luxury-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-6 translate-y-4 group-hover:translate-y-0">
                     <p className="text-[10px] font-black uppercase tracking-[0.2em] text-luxury-gold mb-1">{agent.specialty}</p>
