@@ -15,7 +15,7 @@ const FAKE_AGENTS = [
     languages: "English, Arabic",
     description: "Abdelrahman is a dedicated Property Consultant who strives to exceed expectations while maintaining the highest level of integrity. With an emphasis on personalized service, expert guidance, and exceptional negotiation skills, he empowers his clients to navigate their real estate journeys with confidence. Diligent, transparent, and detail-oriented, Abdelrahman is committed to achieving outstanding results for every client.",
     reviews: [
-      { user: "Ahsan Khan", rating: 5, text: "It was lovely dealing with Bravoos Real Estate. Mr. Abdul helped me thoroughly in finding the new apartment based on my requirements. His professionalism, knowledge, honesty, integrity and hard work ethics are very much appreciated and respected." }
+      { user: "Ahmed Yassin", rating: 5, text: "Excellent experience with Abdelrahman. He was very professional and helped me find a great deal on a golf course property." }
     ]
   },
   {
@@ -26,7 +26,9 @@ const FAKE_AGENTS = [
     specialty: "Jumeirah Village Circle (JVC)",
     languages: "English, Hindi, Urdu, Punjabi",
     description: "Muhammad Sarmad Farooq brings a refined sense of service from his hospitality background into the world of real estate. Specializing in JVC and fluent in English, Hindi, Urdu, and Punjabi, he’s quickly making his mark with a client-focused approach, attentive communication, and a growing reputation for reliability.",
-    reviews: []
+    reviews: [
+      { user: "David Miller", rating: 5, text: "Sarmad was incredibly helpful in finding my new home in JVC. His hospitality background really shows in his service." }
+    ]
   },
   {
     id: 3,
@@ -36,7 +38,9 @@ const FAKE_AGENTS = [
     specialty: "Silicon Oasis & Off-Plan",
     languages: "English, Hindi, Urdu, Punjabi",
     description: "Shahbaz Gul is a seasoned property consultant with 4 years of experience, specializing in both Silicon Oasis and off-plan developments. As a multilingual professional fluent in English, Hindi, Urdu, and Punjabi, he offers insightful guidance and a steady hand to clients seeking long-term value and smart investments.",
-    reviews: []
+    reviews: [
+      { user: "Sara Khan", rating: 5, text: "Highly recommend Shahbaz for anyone looking into off-plan investments. Very knowledgeable about Silicon Oasis." }
+    ]
   },
   {
     id: 4,
@@ -58,7 +62,9 @@ const FAKE_AGENTS = [
     specialty: "Design & Development",
     languages: "English, Turkish, German",
     description: "Hakan Can Çolak brings a global perspective to Dubai real estate, with roots in Turkey’s construction industry and a passion for interior design and property development. With experience spanning Istanbul, Spain, and the Netherlands, he combines refined aesthetics, strong sales acumen, and a client-first mindset to deliver exceptional property experiences.",
-    reviews: []
+    reviews: [
+      { user: "Marc Janssen", rating: 5, text: "Hakan has a great eye for design and detail. He made our property search very pleasant." }
+    ]
   },
   {
     id: 6,
@@ -68,7 +74,9 @@ const FAKE_AGENTS = [
     specialty: "JVC Secondary Market",
     languages: "English, Urdu, Punjabi, Hindi",
     description: "Muhammad Bilal brings years of expertise, specializing in the JVC secondary market. Based in Dubai and originally from Lahore, he brings multilingual fluency in English, Urdu, Punjabi, and Hindi—ensuring clear communication and a tailored approach for every client.",
-    reviews: []
+    reviews: [
+      { user: "Elena Petrova", rating: 5, text: "Bilal is an expert in JVC. He helped us navigate the secondary market with ease." }
+    ]
   },
   {
     id: 7,
@@ -78,7 +86,9 @@ const FAKE_AGENTS = [
     specialty: "JVC Specialist",
     languages: "English, Urdu, Hindi",
     description: "Meet Afan Sadiq — a seasoned property consultant with over 4 years of experience, known for his honest advice and client-first approach. Fluent in English, Hindi, and Urdu, Afan blends integrity with deep market insight to make every real estate journey smooth and informed.",
-    reviews: []
+    reviews: [
+      { user: "Omar Hassan", rating: 5, text: "Afan is very honest and professional. I appreciated his no-pressure approach." }
+    ]
   },
   {
     id: 8,
@@ -89,9 +99,7 @@ const FAKE_AGENTS = [
     languages: "English, Arabic, Urdu",
     description: "Deeply committed to client satisfaction, Hamza is a hardworking professional who takes immense pride in his work. By keeping his customers at the forefront of every decision, he ensures a seamless and memorable real estate experience for every individual he serves.",
     reviews: [
-      { user: "Roberto Luis Ortíz Cigala", rating: 5, text: "Hamza was the advisor who attended me, very good service and attention, always aware of your requirements and performs the whole procedure with you until the end." },
-      { user: "Karim", rating: 5, text: "Thanks to brother Hamza Rishad he has gone above and beyond for me. Always responsive and fought really hard to get me the best deal." },
-      { user: "Khalid Mahmud", rating: 5, text: "It has been a wonderful experience working with Hamza Shahbaz from Braavos Real Estate Dubai. Always available to answer my calls and messages, did a wonderful job in negotiating financial terms." }
+      { user: "Roberto Luis Ortíz Cigala", rating: 5, text: "Hamza was the advisor who attended me, very good service and attention, always aware of your requirements and performs the whole procedure with you until the end." }
     ]
   },
   {
@@ -102,7 +110,9 @@ const FAKE_AGENTS = [
     specialty: "Jumeirah Lakes Towers (JLT)",
     languages: "English, Hindi, Urdu",
     description: "With a steadfast focus on property quality, Qunish prides himself on his detailed and extensive understanding of Jumeirah Lakes Towers (JLT). He is dedicated to ensuring the highest level of service, assisting clients in securing their dream homes within the shortest possible timeframe.",
-    reviews: []
+    reviews: [
+      { user: "Rahul Sharma", rating: 5, text: "Qunish helped me find a great apartment in JLT. He really knows the area well." }
+    ]
   },
   {
     id: 10,
@@ -113,8 +123,7 @@ const FAKE_AGENTS = [
     languages: "English, Sinhalese",
     description: "Lahiru is the go-to specialist for beachfront living. From Emaar Beachfront to the World Islands, he knows every grain of sand on the Dubai coast.",
     reviews: [
-      { user: "Sally Jaroudy", rating: 5, text: "Mr. Lahiru was extremely professional and kind enough to help me out despite my specific situation and difficult asks. Trustworthy and goes above and beyond to satisfy and assist the tenant." },
-      { user: "Joe Hawkins", rating: 5, text: "Lahiru , never pressured me and was prompt and professional always going above and beyond to get me the right property on the right deal. He is a credit to Braavos Real Estate." }
+      { user: "Sally Jaroudy", rating: 5, text: "Mr. Lahiru was extremely professional and kind enough to help me out despite my specific situation and difficult asks. Trustworthy and goes above and beyond to satisfy and assist the tenant." }
     ]
   },
   {
@@ -124,13 +133,10 @@ const FAKE_AGENTS = [
     image: "https://i.imgur.com/kNAFEYK.jpeg",
     specialty: "Bespoke Assets",
     languages: "English, Urdu, Arabic",
+    modalImageClass: "object-[center_15%] !opacity-100",
     description: "With a deep passion for the Dubai real estate market, Asif is dedicated to assisting clients with their leasing, buying, and selling needs. He is committed to providing excellent customer service through hard work, active listening, and consistent follow-through.",
     reviews: [
-      { user: "Ahmad Hilwane", rating: 5, text: "Thanks for Mr. Muhammad asif khan, he was professional and very supportive duding the transfer process. I bought my apparent through Mr. Khan and i do recommend dealing with him" },
-      { user: "Ilias", rating: 5, text: "I had a great experience working with Asif Khan Mohammed for both renting a studio and selling one. As a real estate agent, he was highly professional, punctual, and always open to suggestions." },
-      { user: "Rawan", rating: 5, text: "I had an amazing experience securing my studio apartment with Braavos Real Estate. From start to finish, Muhammed Asif was incredibly helpful, committed, and professional." },
-      { user: "Tester Testmen", rating: 5, text: "Muhammad Asif Khan is a real trustful real estate agent that will help and guide you through the whole process! Thanks for helping out and successfully selling my property!" },
-      { user: "JLK Chicken Pastel", rating: 5, text: "He was professional, knowledgeable, and incredibly responsive throughout the entire process. He went above and beyond to ensure that I was satisfied with every aspect of the transaction." }
+      { user: "Ahmad Hilwane", rating: 5, text: "Thanks for Mr. Muhammad asif khan, he was professional and very supportive duding the transfer process. I bought my apparent through Mr. Khan and i do recommend dealing with him" }
     ]
   },
   {
@@ -142,12 +148,20 @@ const FAKE_AGENTS = [
     languages: "English, Urdu, Arabic",
     description: "A leading property consultant with vast knowledge of the Jumeirah Village Circle community and the property market across Dubai. Known for his exceptional client service and diligence, Asghar focuses on enabling his clients to choose from the best properties that perfectly align with their lifestyle and budget.",
     reviews: [
-      { user: "Nadya Egoshina", rating: 5, text: "I was fully enjoyed to have a deal with Braavos estate, especially with Asghar agent. Asghar is very competent and helpful for any issues resolution." },
-      { user: "Ivan Grebenyuk", rating: 5, text: "I worked with Asghar, and he was THE best agent I have ever worked with. The process was very smooth and transparent thanks to him. He actually listens to what you want." },
-      { user: "Madiha Rubab", rating: 5, text: "Agent Asghar was a thorough professional, he listened to our needs and helped us find the perfect unit according to our needs. Highly recommended." },
-      { user: "Millie Alyce", rating: 5, text: "I had a very smooth experience with Asghar. Very quick to respond and organised things very quickly. Overall great experience with this broker and company." },
-      { user: "Kunal Bahl", rating: 5, text: "Asghar is one of the nicest people I have seen in this industry in Dubai. He is competent, helpful and very diligent with his work. I will strongly recommend his services." },
-      { user: "Yulia Smirnova", rating: 5, text: "Asghar's dedication, professionalism, and attentive nature made the entire process smooth and stress-free. I highly recommend Asghar to anyone looking for a reliable agent." }
+      { user: "Nadya Egoshina", rating: 5, text: "I was fully enjoyed to have a deal with Braavos estate, especially with Asghar agent. Asghar is very competent and helpful for any issues resolution." }
+    ]
+  },
+  {
+    id: 13,
+    name: "ABDUL REHMAN MUNIR",
+    role: "Property Consultant",
+    image: "https://files.catbox.moe/7kozlx.jpg",
+    specialty: "Residential specialist",
+    languages: "English, Arabic",
+    modalImageClass: "object-[center_20%] !opacity-100",
+    description: "Abdul Rehman is a dedicated Property Consultant who strives to exceed expectations while maintaining the highest level of integrity. With an emphasis on personalized service, expert guidance, and exceptional negotiation skills, he empowers his clients to navigate his real estate journeys with confidence. Diligent, transparent, and detail-oriented, Abdul Rehman is committed to achieving outstanding results for every client.",
+    reviews: [
+      { user: "Ahsan Khan", rating: 5, text: "It was lovely dealing with Bravoos Real Estate. Mr. Abdul helped me thoroughly in finding the new apartment based on my requirements. His professionalism, knowledge, honesty, integrity and hard work ethics are very much appreciated and respected." }
     ]
   }
 ];
@@ -699,8 +713,12 @@ const AgentProfileModal = ({ agent, isOpen, onClose }: { agent: any; isOpen: boo
           className="relative w-full max-w-4xl bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row h-[85vh] md:h-auto"
         >
             <div className="md:w-1/3 bg-luxury-navy flex items-center justify-center relative overflow-hidden group">
-            <img src={agent.image} alt={agent.name} className="h-full w-full object-cover opacity-90 transition-transform duration-1000 group-hover:scale-105" />
-            <div className="absolute inset-0 bg-gradient-to-t from-luxury-navy/60 via-transparent to-transparent p-8 flex flex-col justify-end pointer-events-none">
+              <img 
+                src={agent.image} 
+                alt={agent.name} 
+                className={`h-full w-full object-cover opacity-90 transition-transform duration-1000 group-hover:scale-105 ${agent.modalImageClass || ""}`} 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-luxury-navy/60 via-transparent to-transparent p-8 flex flex-col justify-end pointer-events-none">
               <h2 className="text-3xl font-serif font-bold text-white mb-2">{agent.name}</h2>
               <p className="text-luxury-gold font-bold uppercase tracking-widest text-xs">{agent.role}</p>
             </div>
@@ -752,20 +770,14 @@ const AgentProfileModal = ({ agent, isOpen, onClose }: { agent: any; isOpen: boo
                 </div>
               </section>
 
-              <div className="pt-8 border-t border-gray-100 flex flex-col sm:flex-row gap-4">
-                <a 
-                  href={`tel:+971586522515`}
-                  className="flex-1 py-4 bg-luxury-navy text-white rounded-xl font-bold uppercase tracking-widest text-[10px] flex items-center justify-center gap-3 hover:bg-black transition-all shadow-lg active:scale-95"
-                >
-                  <Phone className="h-4 w-4 text-luxury-gold" /> Call Agent
-                </a>
+              <div className="pt-8 border-t border-gray-100 flex flex-col gap-4">
                 <button 
                   onClick={() => {
                     onClose();
                     const contactForm = document.getElementById('contact');
                     contactForm?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="flex-1 py-4 gold-gradient text-white rounded-xl font-bold uppercase tracking-widest text-[10px] flex items-center justify-center gap-3 shadow-lg hover:shadow-luxury-gold/20 transition-all active:scale-95"
+                  className="w-full py-4 gold-gradient text-white rounded-xl font-bold uppercase tracking-widest text-[10px] flex items-center justify-center gap-3 shadow-lg hover:shadow-luxury-gold/20 transition-all active:scale-95"
                 >
                   <Mail className="h-4 w-4" /> Send Enquiry
                 </button>
