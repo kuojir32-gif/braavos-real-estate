@@ -14,7 +14,9 @@ const FAKE_AGENTS = [
     specialty: "Golf Course Estates",
     languages: "English, Arabic",
     description: "Abdelrahman is a dedicated Property Consultant who strives to exceed expectations while maintaining the highest level of integrity. With an emphasis on personalized service, expert guidance, and exceptional negotiation skills, he empowers his clients to navigate their real estate journeys with confidence. Diligent, transparent, and detail-oriented, Abdelrahman is committed to achieving outstanding results for every client.",
-    reviews: []
+    reviews: [
+      { user: "Ahsan Khan", rating: 5, text: "It was lovely dealing with Bravoos Real Estate. Mr. Abdul helped me thoroughly in finding the new apartment based on my requirements. His professionalism, knowledge, honesty, integrity and hard work ethics are very much appreciated and respected." }
+    ]
   },
   {
     id: 2,
@@ -86,7 +88,11 @@ const FAKE_AGENTS = [
     specialty: "Off-Plan Properties",
     languages: "English, Arabic, Urdu",
     description: "Deeply committed to client satisfaction, Hamza is a hardworking professional who takes immense pride in his work. By keeping his customers at the forefront of every decision, he ensures a seamless and memorable real estate experience for every individual he serves.",
-    reviews: []
+    reviews: [
+      { user: "Roberto Luis Ortíz Cigala", rating: 5, text: "Hamza was the advisor who attended me, very good service and attention, always aware of your requirements and performs the whole procedure with you until the end." },
+      { user: "Karim", rating: 5, text: "Thanks to brother Hamza Rishad he has gone above and beyond for me. Always responsive and fought really hard to get me the best deal." },
+      { user: "Khalid Mahmud", rating: 5, text: "It has been a wonderful experience working with Hamza Shahbaz from Braavos Real Estate Dubai. Always available to answer my calls and messages, did a wonderful job in negotiating financial terms." }
+    ]
   },
   {
     id: 9,
@@ -106,7 +112,10 @@ const FAKE_AGENTS = [
     specialty: "Beachfront Villas",
     languages: "English, Sinhalese",
     description: "Lahiru is the go-to specialist for beachfront living. From Emaar Beachfront to the World Islands, he knows every grain of sand on the Dubai coast.",
-    reviews: []
+    reviews: [
+      { user: "Sally Jaroudy", rating: 5, text: "Mr. Lahiru was extremely professional and kind enough to help me out despite my specific situation and difficult asks. Trustworthy and goes above and beyond to satisfy and assist the tenant." },
+      { user: "Joe Hawkins", rating: 5, text: "Lahiru , never pressured me and was prompt and professional always going above and beyond to get me the right property on the right deal. He is a credit to Braavos Real Estate." }
+    ]
   },
   {
     id: 11,
@@ -119,7 +128,9 @@ const FAKE_AGENTS = [
     reviews: [
       { user: "Ahmad Hilwane", rating: 5, text: "Thanks for Mr. Muhammad asif khan, he was professional and very supportive duding the transfer process. I bought my apparent through Mr. Khan and i do recommend dealing with him" },
       { user: "Ilias", rating: 5, text: "I had a great experience working with Asif Khan Mohammed for both renting a studio and selling one. As a real estate agent, he was highly professional, punctual, and always open to suggestions." },
-      { user: "Rawan", rating: 5, text: "I had an amazing experience securing my studio apartment with Braavos Real Estate. From start to finish, Muhammed Asif was incredibly helpful, committed, and professional." }
+      { user: "Rawan", rating: 5, text: "I had an amazing experience securing my studio apartment with Braavos Real Estate. From start to finish, Muhammed Asif was incredibly helpful, committed, and professional." },
+      { user: "Tester Testmen", rating: 5, text: "Muhammad Asif Khan is a real trustful real estate agent that will help and guide you through the whole process! Thanks for helping out and successfully selling my property!" },
+      { user: "JLK Chicken Pastel", rating: 5, text: "He was professional, knowledgeable, and incredibly responsive throughout the entire process. He went above and beyond to ensure that I was satisfied with every aspect of the transaction." }
     ]
   },
   {
@@ -131,7 +142,12 @@ const FAKE_AGENTS = [
     languages: "English, Urdu, Arabic",
     description: "A leading property consultant with vast knowledge of the Jumeirah Village Circle community and the property market across Dubai. Known for his exceptional client service and diligence, Asghar focuses on enabling his clients to choose from the best properties that perfectly align with their lifestyle and budget.",
     reviews: [
-      { user: "Nadya Egoshina", rating: 5, text: "I was fully enjoyed to have a deal with Braavos estate, especially with Asghar agent. Asghar is very competent and helpful for any issues resolution." }
+      { user: "Nadya Egoshina", rating: 5, text: "I was fully enjoyed to have a deal with Braavos estate, especially with Asghar agent. Asghar is very competent and helpful for any issues resolution." },
+      { user: "Ivan Grebenyuk", rating: 5, text: "I worked with Asghar, and he was THE best agent I have ever worked with. The process was very smooth and transparent thanks to him. He actually listens to what you want." },
+      { user: "Madiha Rubab", rating: 5, text: "Agent Asghar was a thorough professional, he listened to our needs and helped us find the perfect unit according to our needs. Highly recommended." },
+      { user: "Millie Alyce", rating: 5, text: "I had a very smooth experience with Asghar. Very quick to respond and organised things very quickly. Overall great experience with this broker and company." },
+      { user: "Kunal Bahl", rating: 5, text: "Asghar is one of the nicest people I have seen in this industry in Dubai. He is competent, helpful and very diligent with his work. I will strongly recommend his services." },
+      { user: "Yulia Smirnova", rating: 5, text: "Asghar's dedication, professionalism, and attentive nature made the entire process smooth and stress-free. I highly recommend Asghar to anyone looking for a reliable agent." }
     ]
   },
   {
@@ -144,7 +160,35 @@ const FAKE_AGENTS = [
     description: "Imran is highly regarded by his clients for his professional approach and exceptional responsiveness. Specializing in the luxury residential sector, he provides detailed attention and expert guidance throughout the entire property journey.",
     reviews: [
       { user: "Eamonn Gillespie", rating: 5, text: "I had an absolute pleasure dealing with Imran. Incredibly professional and helpful. I would highly recommend!" },
-      { user: "Karina Kaldvee", rating: 5, text: "I had a great experience working with Imran from Braavos Real Estate. He was incredibly helpful throughout the entire process, providing fast replies and always being available." }
+      { user: "Karina Kaldvee", rating: 5, text: "I had a great experience working with Imran from Braavos Real Estate. He was incredibly helpful throughout the entire process, providing fast replies and always being available." },
+      { user: "Irfan Qazi", rating: 5, text: "Imran is very approachable and answers all queries and it has been a pleasure to interact with him. I am impressed by his professional attitude towards customer care." },
+      { user: "Rukhsar Ahmad", rating: 5, text: "It has been a pleasure working with Imran who has gone out of the way many times to help answer our queries. Imran has been a message away with extremely quick response." },
+      { user: "Miguel Lopes", rating: 5, text: "I sold my apartment via Braavos last week, and it went well. Recommend them to anyone. Special mention to Imran Rafique who went above and beyond!" },
+      { user: "Aneesa Hussain", rating: 5, text: "Imran Rafique was super helpful in providing me with a great experience of finding my first rental property in Dubai. He was knowledgeable about the area and personable." }
+    ]
+  },
+  {
+    id: 14,
+    name: "SURAJ",
+    role: "Property Consultant",
+    image: "https://i.imgur.com/kNAFEYK.jpeg", // Placeholder
+    specialty: "Leasing Specialist",
+    languages: "English, Hindi, Urdu",
+    description: "Suraj is a dedicated leasing specialist known for his friendly attitude and exceptional support. He goes above and beyond to ensure his clients are well-informed and comfortable throughout the entire rental process.",
+    reviews: [
+      { user: "Elie Chammas", rating: 5, text: "I had a fantastic experience renting an apartment from Suraj. He was incredibly helpful and supportive throughout the entire process, making everything smooth and stress-free." }
+    ]
+  },
+  {
+    id: 15,
+    name: "EHSAN",
+    role: "Property Consultant",
+    image: "https://i.imgur.com/o5mWsfZ.jpeg", // Placeholder
+    specialty: "Documentation Specialist",
+    languages: "English, Urdu",
+    description: "Ehsan is a technical professional who excels in handling complex documentation and the Ejari process. His meticulous attention to detail ensures that all property transactions are handled smoothly and efficiently.",
+    reviews: [
+      { user: "Ani Brutyan", rating: 5, text: "My special thanks to Mr. Ehsan, who is a very professional and dedicated agent, the preparation of all the documents was smooth and fast." }
     ]
   }
 ];
@@ -187,6 +231,101 @@ const FAKE_REVIEWS = [
     name: "Karina Kaldvee", 
     role: "", 
     text: "I had a great experience working with Imran from Braavos Real Estate. He was incredibly helpful throughout the entire process, providing fast replies and always being available to answer my questions, no matter how many I had. His dedication to great service and attention to detail made the whole experience seamless. If you’re looking for a reliable and responsive agent, I highly recommend Imran!" 
+  },
+  {
+    name: "Elie Chammas",
+    role: "",
+    text: "I had a fantastic experience renting an apartment from Suraj. He was incredibly helpful and supportive throughout the entire process, making everything smooth and stress-free. Suraj was always available to answer my questions and went above and beyond to ensure I felt comfortable and well-informed. His professionalism and friendly attitude made the experience a pleasure. Highly recommended!"
+  },
+  {
+    name: "Tester Testmen",
+    role: "",
+    text: "Muhammad Asif Khan is a real trustful real estate agent that will help and guide you through the whole process! Thanks for helping out and successfully selling my property! Kind regards Youssef"
+  },
+  {
+    name: "JLK Chicken Pastel",
+    role: "",
+    text: "I had an excellent experience working with Muhammad Asif Khan on my recent property transaction. He was professional, knowledgeable, and incredibly responsive throughout the entire process. He took the time to understand my needs and provided valuable insights that helped me make informed decisions. Whether it was scheduling viewings, negotiating terms, or handling paperwork, Muhammad Asif Khan made everything smooth and stress-free. He went above and beyond to ensure that I was satisfied with every aspect of the transaction."
+  },
+  {
+    name: "Irfan Qazi",
+    role: "",
+    text: "I have been using Braavos services for past few months. They have helped me and a lot of my other friends to secure apartments in JVC. The whole experience so far has been amazing and very smooth. Imran is very approachable and answers all queries and it has been a pleasure to interact with him. I am impressed by his professional attitude towards customer care and he ensures that customers are satisfied."
+  },
+  {
+    name: "Roberto Luis Ortíz Cigala",
+    role: "",
+    text: "It is a good agency to look for apartments, Hamza was the advisor who attended me, very good service and attention, always aware of your requirements and performs the whole procedure with you until the end. He advises you with details that if you are new you surely don't know. Overall good service."
+  },
+  {
+    name: "Sally Jaroudy",
+    role: "",
+    text: "I am very satisfied with my experience with Braavos agency. Mr. Lahiru was extremely professional and kind enough to help me out despite my specific situation and difficult asks. He knew from first viewing exactly what I was looking for and did not waste my time with various other viewings. Very responsive always, which is an important quality for an agent, trustworthy and goes above and beyond to satisfy and assist the tenant."
+  },
+  {
+    name: "Ivan Grebenyuk",
+    role: "",
+    text: "I would strongly recommend Braavos Real Estate. I worked with Asghar, and he was THE best agent I have ever worked with. He showed up on time to all of the viewings. I told Asghar what I was looking for, and within 1 day he sent me a perfect apartment - specifically what I was looking for. I signed the papers the next day. The process was very smooth and transparent."
+  },
+  {
+    name: "Madiha Rubab",
+    role: "",
+    text: "We had a great experience with Braavos Real Estate, agent Asghar was a thorough professional, he listened to our needs and helped us find the perfect unit according to our needs.Highly recommended."
+  },
+  {
+    name: "Millie Alyce",
+    role: "",
+    text: "I had a very smooth experience with Asghar. It was my first time renting in Dubai and he was very clearly on each step of the process making it as easy as possible for me. Very quick to respond and organised things very quickly. Overall great experience with this broker and company."
+  },
+  {
+    name: "Karim",
+    role: "",
+    text: "Very pleased with the service. Thanks to brother Hamza Rishad he has gone above and beyond for me. Always responsive and fought really hard to get me the best deal. Highly recommend and will be sure to use again when needed"
+  },
+  {
+    name: "Ahsan Khan",
+    role: "",
+    text: "It was lovely dealing with Bravoos Real Estate. Mr. Abdul helped me thoroughly in finding the new apartment based on my requirements. His professionalism, knowledge, honesty, integrity and hard work ethics are very much appreciated and respected. He knows how to make things done smoothly. Saved me from lots of hassle during my busy work schedules."
+  },
+  {
+    name: "Kunal Bahl",
+    role: "",
+    text: "Asghar is one of the nicest people I have seen in this industry in Dubai. He is competent, helpful and very diligent with his work. He helped us in the renting process of an apartment we liked from step 1 and has provided consistent support throughout the entire process. I will strongly recommend his services."
+  },
+  {
+    name: "Rukhsar Ahmad",
+    role: "",
+    text: "I have been using Braavos services for past few months. They have helped me and 6 of my other friends to secure apartments in JVC. The whole experience so far has been amazing and very smooth. We are all very satisfied with their professional skills and services, esp It has been a pleasure working with Imran who has gone out of the way many times to help answer our queries."
+  },
+  {
+    name: "Khalid Mahmud",
+    role: "",
+    text: "It has been a wonderful experience working with Hamza Shahbaz from Braavos Real Estate Dubai. We approached him by referring to one of the adds given for the apartment. We didn’t see the apartment and finalized it on à video viewing. This will be my fourth apartment in UAE but haven’t seen a true and dedicated professional like Hamza. Always available to answer my calls and messages."
+  },
+  {
+    name: "Miguel Lopes",
+    role: "",
+    text: "I sold my apartment via Braavos last week, and it went well. Recommend them to anyone planning to buy or sell in Dubai. Special mention to Imran Rafique who went above and beyond! Definitely ask for him."
+  },
+  {
+    name: "Yulia Smirnova",
+    role: "",
+    text: "With my husband we had a fantastic experience working with Asghar from Braavos Real Estate Dubai. Yesterday, we finalized the deal for a wonderful apartment that we are thrilled to call our new home. Asghar's dedication, professionalism, and attentive nature made the entire process smooth and stress-free."
+  },
+  {
+    name: "Aneesa Hussain",
+    role: "",
+    text: "Imran Rafique was super helpful in providing me with a great experience of finding my first rental property in Dubai. I found my whole experience with him very satisfying. He was knowledgeable about the area, personable and always available to answer any questions/queries I had. I would recommend him highly."
+  },
+  {
+    name: "Ani Brutyan",
+    role: "",
+    text: "I had a great experience finding my new home through Braavos Real Estate. My special thanks to Mr. Ehsan, who is a very professional and dedicated agent, the preparation of all the documents was smooth and fast, he did is absolute best to make everything easy and comfortable for his clients. I highly recommend to find your new home with them."
+  },
+  {
+    name: "Joe Hawkins",
+    role: "",
+    text: "I had a great experience with this company having met Lahiru when I first moved to Dubai 6 months ago. And having only just secured a long term rental, I must of been a tough customer to deal with but Lahiru , never pressured me and was prompt and professional always going above and beyond to get me the right property on the right deal."
   }
 ];
 
