@@ -351,9 +351,9 @@ const PropertyDetailModal = ({ property, isOpen, onClose, onEnquireSubmit, isSub
             <div className="flex-1 overflow-y-auto custom-scrollbar flex flex-col md:flex-row h-full">
               {/* Left side: Property Details */}
               <div className="md:w-3/5 bg-gray-50 flex flex-col">
-                <div className="relative min-h-[40vh] md:min-h-[450px] shrink-0">
-                  <img src={property.image} alt={property.title} className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="relative min-h-[40vh] md:min-h-[450px] shrink-0 bg-luxury-navy flex items-center justify-center">
+                  <img src={property.image} alt={property.title} className="max-w-full max-h-full object-contain" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                   
                   <div className="absolute bottom-8 left-8">
                     <div className="flex gap-3 mb-4">
@@ -527,9 +527,9 @@ const ProjectDetailModal = ({ project, isOpen, onClose, onEnquireSubmit, isSubmi
             <div className="flex-1 overflow-y-auto custom-scrollbar flex flex-col md:flex-row h-full">
               {/* Left Section: Immersive Content */}
               <div className="md:w-3/5 bg-white border-r border-gray-100/50">
-                <div className="relative h-[45vh] md:h-[75vh] shrink-0 overflow-hidden">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+                <div className="relative h-[45vh] md:h-[75vh] shrink-0 overflow-hidden bg-luxury-navy">
+                  <img src={project.image} alt={project.title} className="w-full h-full object-contain" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                   <div className="absolute bottom-10 left-8 md:bottom-16 md:left-16 right-8 md:right-16">
                     <div className="flex items-center gap-2 mb-4 md:mb-6">
                       <span className="bg-luxury-gold text-white px-4 py-1.5 md:px-5 md:py-2 rounded-full text-[8px] md:text-[10px] font-black uppercase tracking-[0.3em] shadow-2xl">Exclusive Launch</span>
@@ -1929,7 +1929,11 @@ export default function App() {
             {[
               "Residential Sales", "Commercial Leasing", "Off-Plan Projects", "Redevelopment"
             ].map((specialty, i) => (
-              <div key={specialty} className="p-6 bg-white border border-gray-100 rounded-2xl flex items-center gap-4 shadow-sm group hover:border-luxury-gold transition-all">
+              <div 
+                key={specialty} 
+                onClick={() => specialty === "Off-Plan Projects" && setExplorerMode("projects")}
+                className={`p-6 bg-white border border-gray-100 rounded-2xl flex items-center gap-4 shadow-sm group hover:border-luxury-gold transition-all ${specialty === "Off-Plan Projects" ? "cursor-pointer" : ""}`}
+              >
                 <div className="h-10 w-10 flex items-center justify-center rounded-full bg-luxury-cream text-luxury-gold group-hover:bg-luxury-gold group-hover:text-white transition-colors">
                   <CheckCircle2 className="h-5 w-5" />
                 </div>
