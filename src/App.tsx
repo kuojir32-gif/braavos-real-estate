@@ -228,7 +228,7 @@ const FAKE_PROJECTS = [
   {
     id: 2,
     title: "Oxford Cave",
-    location: "Jumeirah Village",
+    location: "JVC",
     developer: "IMAN",
     status: "Exclusive Boutique",
     image: "https://i.ibb.co/qLs156Xg/Screenshot-2026-05-12-103148.png",
@@ -1375,7 +1375,7 @@ const PropertyExplorer = ({ isOpen, onClose, mode, onLogoClick, onEnquire, onOpe
                   <div className="space-y-2">
                     <label className="text-[10px] font-serif font-medium text-luxury-navy/40 uppercase tracking-[0.2em] flex items-center gap-2 mb-1"><MapPin className="h-3 w-3 text-luxury-gold" /> Location</label>
                     <div className="flex flex-col gap-0.5">
-                      {["All", "Palm Jumeirah", "Downtown Dubai", "Dubai Hills", "Emirates Hills", "Business Bay", "Dubai Marina"].map(loc => (
+                      {["All", "Palm Jumeirah", "Downtown Dubai", "Dubai Hills", "Emirates Hills", "Business Bay", "Dubai Marina", "JVC"].map(loc => (
                         <button 
                           key={loc}
                           onClick={() => setActiveFilters({...activeFilters, location: loc})}
