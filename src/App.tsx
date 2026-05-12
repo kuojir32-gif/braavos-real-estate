@@ -224,6 +224,53 @@ const FAKE_PROJECTS = [
         { unit: "2BR / 3BR / Offices", amount: "AED 100K" }
       ]
     }
+  },
+  {
+    id: 2,
+    title: "Oxford Cave",
+    location: "Jumeirah Village",
+    developer: "IMAN",
+    status: "Exclusive Boutique",
+    image: "https://i.ibb.co/qLs156Xg/Screenshot-2026-05-12-103148.png",
+    price: "From AED 680,000",
+    completion: "Q4 2028",
+    type: "Project",
+    details: {
+      tagline: "Boutique Low-Rise Living | Launching May 13th",
+      highlights: [
+        "Only 5 Floors – Exclusive Boutique Low-Rise Living experience",
+        "4% Launch Discount applied for priority pre-launch reservations",
+        "Refined European-inspired interiors with high-end fixtures",
+        "Intimate community feel with superior privacy and world-class amenites",
+        "Strategically located oxford series project with high rental potential"
+      ],
+      pricing: [
+        { unit: "Studio", price: "AED 680,000", size: "Premium Selection" },
+        { unit: "1BR", price: "AED 1,110,000", size: "Executive Layouts" },
+        { unit: "2BR", price: "AED 1,450,000", size: "Family Residences" },
+        { unit: "2BR + Study", price: "AED 1,690,000", size: "Spacious Sanctuary" }
+      ],
+      paymentPlans: [
+        { title: "40:60 Payment Plan", details: "40% During Construction | 60% On Handover", icon: "Wallet" }
+      ],
+      strategicAdvantages: [
+        "Exclusive 5-Floor Boutique Design",
+        "Prime Investment Node Location",
+        "Priority Allocation for Early EOI",
+        "7% Potential Commission Structure",
+        "Oxford Heritage of Quality Builds"
+      ],
+      amenities: [
+        { name: "Rooftop Pool", icon: "Waves" },
+        { name: "Fitness Suite", icon: "Dumbbell" },
+        { name: "Zen Gardens", icon: "PersonStanding" },
+        { name: "Resident Lounge", icon: "Users" },
+        { name: "Kids Zone", icon: "Baby" }
+      ],
+      eoi: [
+        { unit: "Priority Booking", amount: "Contact for Details" }
+      ]
+    }
   }
 ];
 const FAKE_REVIEWS = [
@@ -348,7 +395,7 @@ const PropertyDetailModal = ({ property, isOpen, onClose, onEnquireSubmit, isSub
               <X className="h-5 w-5" />
             </button>
 
-            <div className="flex-1 overflow-y-auto custom-scrollbar flex flex-col md:flex-row h-full">
+            <div className="flex-1 overflow-y-auto custom-scrollbar flex flex-col md:flex-row min-h-0">
               {/* Left side: Property Details */}
               <div className="md:w-3/5 bg-gray-50 flex flex-col">
                 <div className="relative min-h-[40vh] md:min-h-[450px] shrink-0 bg-luxury-navy flex items-center justify-center">
@@ -423,7 +470,7 @@ const PropertyDetailModal = ({ property, isOpen, onClose, onEnquireSubmit, isSub
               </div>
 
               {/* Right side: Enquiry Form */}
-              <div className="md:w-2/5 p-8 md:p-16 bg-white flex flex-col justify-center">
+              <div className="md:w-2/5 p-8 md:p-16 bg-white flex flex-col h-auto">
                 <div className="mb-12 text-center md:text-left">
                   <p className="text-luxury-gold font-bold uppercase tracking-[0.4em] text-[8px] mb-4">Concierge Desk</p>
                   <h3 className="text-3xl md:text-4xl font-serif font-bold text-luxury-navy mb-4">Register Interest</h3>
@@ -524,7 +571,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose, onEnquireSubmit, isSubmi
             </button>
 
             {/* Main scrollable body for mobile, split for desktop */}
-            <div className="flex-1 overflow-y-auto custom-scrollbar flex flex-col md:flex-row h-full">
+            <div className="flex-1 overflow-y-auto custom-scrollbar flex flex-col md:flex-row min-h-0">
               {/* Left Section: Immersive Content */}
               <div className="md:w-3/5 bg-white border-r border-gray-100/50">
                 <div className="relative h-[45vh] md:h-[75vh] shrink-0 overflow-hidden bg-luxury-navy">
@@ -581,6 +628,22 @@ const ProjectDetailModal = ({ project, isOpen, onClose, onEnquireSubmit, isSubmi
                       </div>
                   </div>
 
+                  {project.details.strategicAdvantages && (
+                    <div className="mb-16 md:mb-24">
+                      <h3 className="text-luxury-gold font-black uppercase tracking-[0.5em] text-[9px] md:text-[10px] mb-8 md:mb-10">Investment Highlights</h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                        {project.details.strategicAdvantages.map((adv: string, i: number) => (
+                          <div key={i} className="p-6 rounded-3xl bg-gray-50 border border-gray-100 flex items-center gap-4 group hover:bg-white hover:shadow-xl transition-all">
+                            <div className="h-10 w-10 shrink-0 rounded-2xl bg-luxury-gold/10 flex items-center justify-center text-luxury-gold group-hover:bg-luxury-gold group-hover:text-white transition-all">
+                              <Zap className="h-5 w-5" />
+                            </div>
+                            <p className="text-sm font-bold text-luxury-navy uppercase tracking-wider leading-tight">{adv}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                   <div className="mb-16 md:mb-24 grid md:grid-cols-2 gap-10 md:gap-16">
                       <div>
                           <h3 className="text-luxury-gold font-black uppercase tracking-[0.5em] text-[9px] md:text-[10px] mb-8 md:mb-10">Payment Strategy</h3>
@@ -615,7 +678,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose, onEnquireSubmit, isSubmi
               </div>
 
               {/* Right Section: Reservations */}
-              <div className="md:w-2/5 p-8 md:p-20 bg-luxury-cream h-auto md:h-full flex flex-col">
+              <div className="md:w-2/5 p-8 md:p-20 bg-luxury-cream h-auto flex flex-col">
                   <div className="mb-10 md:mb-16">
                       <div className="flex items-center gap-3 mb-6">
                         <TrendingUp className="h-5 w-5 text-luxury-gold" />
@@ -1360,7 +1423,7 @@ const PropertyExplorer = ({ isOpen, onClose, mode, onLogoClick, onEnquire, onOpe
                     <div className="space-y-2">
                       <label className="text-[10px] font-serif font-medium text-luxury-navy/40 uppercase tracking-[0.2em] flex items-center gap-2 mb-1"><CheckCircle2 className="h-3 w-3 text-luxury-gold" /> Developer</label>
                       <div className="flex flex-col gap-0.5">
-                        {["All", "DAMAC", "SOBHA", "EMAAR", "NAKHEEL", "MERAAS", "IMTIAZ"].map(dev => (
+                        {["All", "DAMAC", "SOBHA", "EMAAR", "NAKHEEL", "MERAAS", "IMTIAZ", "IMAN"].map(dev => (
                           <button 
                             key={dev}
                             onClick={() => setActiveFilters({...activeFilters, developer: dev})}
