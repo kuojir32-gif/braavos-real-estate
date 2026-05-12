@@ -644,36 +644,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose, onEnquireSubmit, isSubmi
                     </div>
                   )}
 
-                  <div className="mb-16 md:mb-24 grid md:grid-cols-2 gap-10 md:gap-16">
-                      <div>
-                          <h3 className="text-luxury-gold font-black uppercase tracking-[0.5em] text-[9px] md:text-[10px] mb-8 md:mb-10">Payment Strategy</h3>
-                          <div className="space-y-4 md:space-y-6">
-                              {project.details.paymentPlans.map((plan: any, i: number) => (
-                                  <div key={i} className="p-6 md:p-8 rounded-[2rem] bg-luxury-navy text-white relative overflow-hidden group">
-                                      <div className="absolute -right-4 -top-4 h-24 w-24 bg-white/5 rounded-full blur-2xl group-hover:bg-luxury-gold/20 transition-all" />
-                                      <h4 className="text-base md:text-lg font-serif font-bold mb-3 flex items-center gap-3">
-                                          {plan.icon === 'Wallet' ? <Wallet className="h-5 w-5 text-luxury-gold" /> : <Calendar className="h-5 w-5 text-luxury-gold" />}
-                                          {plan.title}
-                                      </h4>
-                                      <p className="text-xs md:text-sm text-gray-400 leading-relaxed font-light">{plan.details}</p>
-                                  </div>
-                              ))}
-                          </div>
-                      </div>
-                      <div>
-                          <h3 className="text-luxury-gold font-black uppercase tracking-[0.5em] text-[9px] md:text-[10px] mb-8 md:mb-10">The Resort Experience</h3>
-                          <div className="grid grid-cols-2 gap-3 md:gap-4">
-                              {project.details.amenities.map((a: any, i: number) => (
-                                  <div key={i} className="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-100 group hover:border-luxury-gold/30 hover:bg-white transition-all">
-                                      <div className="h-8 w-8 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:bg-luxury-gold group-hover:text-white transition-all">
-                                          <Plus className="h-3 w-3" />
-                                      </div>
-                                      <span className="text-[8px] md:text-[10px] font-bold text-luxury-navy uppercase tracking-widest leading-tight">{a.name}</span>
-                                  </div>
-                              ))}
-                          </div>
-                      </div>
-                  </div>
+                  {/* Payment Strategy and Lifestyle Amenities section removed per user request */}
                 </div>
               </div>
 
