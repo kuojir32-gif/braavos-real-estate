@@ -271,6 +271,56 @@ const FAKE_PROJECTS = [
         { unit: "Priority Booking", amount: "Contact for Details" }
       ]
     }
+  },
+  {
+    id: 3,
+    title: "Gianfranco Ferre Residences",
+    location: "Al Marjan Island",
+    developer: "Dar Global",
+    status: "Fashion-Branded Luxury",
+    image: "https://i.ibb.co/wZygFWt4/Screenshot-2026-05-12-162408.png",
+    price: "From AED 1,600,000",
+    completion: "Q1 2028",
+    type: "Project",
+    details: {
+      tagline: "Fashion-Forward Coastal Living | Al Marjan, RAK",
+      highlights: [
+        "Fully Furnished & Fully Serviced boutique residences",
+        "Impressive 3.3m Floor-to-Ceiling windows for maximum vista",
+        "Stunning, unobstructed Arabian Sea & Horizon views",
+        "Exclusive 3-Year Developer Home Warranty",
+        "Iconic Gianfranco Ferre interior design and material palettes"
+      ],
+      pricing: [
+        { unit: "Studios", price: "AED 1,600,000", size: "Boutique Luxury" },
+        { unit: "1-Bedroom", price: "AED 2,400,000", size: "Executive Coastal" },
+        { unit: "2-Bedroom", price: "AED 3,800,000", size: "Panoramic Suite" },
+        { unit: "2-Bed Duplex", price: "AED 4,400,000", size: "Grand Sanctuary" },
+        { unit: "3-Bed Duplex", price: "AED 7,300,000", size: "Palatial Skyline" },
+        { unit: "4-Bed Duplex", price: "AED 14,400,000", size: "The Ultra-Penthouse" }
+      ],
+      paymentPlans: [
+        { title: "45/5/50 Payment Strategy", details: "45% During Construction | 5% On Handover | 50% Post-Handover (3 Years)", icon: "Calendar" }
+      ],
+      strategicAdvantages: [
+        "3-Years Post Handover Plan",
+        "Fully Branded & Furnished",
+        "Prime Location on Al Marjan",
+        "Rapid Capital Appreciation",
+        "World-Class Resort Services"
+      ],
+      amenities: [
+        { name: "Infinity Beach Pool", icon: "Waves" },
+        { name: "Designer Fitness Hub", icon: "Dumbbell" },
+        { name: "Sea-View Lounge", icon: "Binoculars" },
+        { name: "Concierge Butler", icon: "Users" },
+        { name: "Valet Parking", icon: "ShieldCheck" }
+      ],
+      eoi: [
+        { unit: "Standard Unit", amount: "AED 100K" },
+        { unit: "Duplex Selection", amount: "AED 250K" }
+      ]
+    }
   }
 ];
 const FAKE_REVIEWS = [
@@ -1346,7 +1396,7 @@ const PropertyExplorer = ({ isOpen, onClose, mode, onLogoClick, onEnquire, onOpe
                   <div className="space-y-2">
                     <label className="text-[10px] font-serif font-medium text-luxury-navy/40 uppercase tracking-[0.2em] flex items-center gap-2 mb-1"><MapPin className="h-3 w-3 text-luxury-gold" /> Location</label>
                     <div className="flex flex-col gap-0.5">
-                      {["All", "Palm Jumeirah", "Downtown Dubai", "Dubai Hills", "Emirates Hills", "Business Bay", "Dubai Marina", "JVC"].map(loc => (
+                      {["All", "Palm Jumeirah", "Downtown Dubai", "Dubai Hills", "Emirates Hills", "Business Bay", "Dubai Marina", "JVC", "Al Marjan Island"].map(loc => (
                         <button 
                           key={loc}
                           onClick={() => setActiveFilters({...activeFilters, location: loc})}
@@ -1394,7 +1444,7 @@ const PropertyExplorer = ({ isOpen, onClose, mode, onLogoClick, onEnquire, onOpe
                     <div className="space-y-2">
                       <label className="text-[10px] font-serif font-medium text-luxury-navy/40 uppercase tracking-[0.2em] flex items-center gap-2 mb-1"><CheckCircle2 className="h-3 w-3 text-luxury-gold" /> Developer</label>
                       <div className="flex flex-col gap-0.5">
-                        {["All", "DAMAC", "SOBHA", "EMAAR", "NAKHEEL", "MERAAS", "IMTIAZ", "IMAN"].map(dev => (
+                        {["All", "DAMAC", "SOBHA", "EMAAR", "NAKHEEL", "MERAAS", "IMTIAZ", "IMAN", "Dar Global"].map(dev => (
                           <button 
                             key={dev}
                             onClick={() => setActiveFilters({...activeFilters, developer: dev})}
