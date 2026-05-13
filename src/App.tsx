@@ -1238,7 +1238,7 @@ const PropertyDetailModal = ({ property, isOpen, onClose, onEnquireSubmit, isSub
               {/* Left side: Property Details */}
               <div className="md:w-3/5 bg-gray-50 flex flex-col">
                 <div className="relative min-h-[40vh] md:min-h-[450px] shrink-0 bg-luxury-navy flex items-center justify-center overflow-hidden">
-                  <img src={property.image} alt={property.title} className="w-full h-full object-cover" />
+                  <img src={property.image} alt={property.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                   
                   <div className="absolute bottom-8 left-8">
@@ -1414,7 +1414,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose, onEnquireSubmit, isSubmi
               {/* Left Section: Immersive Content */}
               <div className="md:w-3/5 bg-white border-r border-gray-100/50">
                 <div className="relative h-[45vh] md:h-[75vh] shrink-0 overflow-hidden bg-luxury-navy">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                   <div className="absolute bottom-10 left-8 md:bottom-16 md:left-16 right-8 md:right-16">
                     <div className="flex items-center gap-2 mb-4 md:mb-6">
@@ -2075,7 +2075,7 @@ const Chatbot = () => {
                       {msg.properties.slice(0, 3).map((p: any) => (
                         <div key={p.id} className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-100 p-2 flex gap-3 group hover:border-luxury-gold transition-all">
                           <div className="h-16 w-16 rounded-lg overflow-hidden flex-shrink-0">
-                            <img src={p.image} className="h-full w-full object-cover group-hover:scale-110 transition-transform" />
+                            <img src={p.image} className="h-full w-full object-cover group-hover:scale-110 transition-transform" referrerPolicy="no-referrer" />
                           </div>
                           <div className="flex-1 min-w-0">
                             <p className="text-[10px] font-black text-luxury-gold truncate mb-0.5">{p.title}</p>
@@ -2318,7 +2318,7 @@ const PropertyExplorer = ({ isOpen, onClose, mode, onLogoClick, onEnquire, onOpe
                           className="group overflow-hidden rounded-2xl bg-white shadow-lg border border-gray-100 flex flex-col cursor-pointer"
                         >
                           <div className="aspect-[16/10] overflow-hidden relative">
-                            <img src={item.image} alt={item.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                            <img src={item.image} alt={item.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" referrerPolicy="no-referrer" />
                             <div className="absolute inset-0 bg-gradient-to-t from-luxury-navy/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                             <div className="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold text-luxury-navy uppercase tracking-widest shadow-lg">
                               {item.status}
@@ -2531,7 +2531,7 @@ export default function App() {
                    }}
                  >
                     <div className="aspect-[4/5] rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
-                       <img src={agent.image} alt={agent.name} className="w-full h-full object-cover" />
+                       <img src={agent.image} alt={agent.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                     </div>
                     <p className="text-[10px] font-bold text-luxury-navy leading-tight">{agent.name}</p>
                     <p className="text-[8px] uppercase tracking-widest text-luxury-gold">{agent.specialty}</p>
@@ -2758,6 +2758,7 @@ export default function App() {
                   src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&q=80&w=1200" 
                   alt="Dubai Real Estate Trends" 
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                  referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <div className="h-20 w-20 rounded-full border-2 border-white flex items-center justify-center backdrop-blur-sm">
@@ -2818,6 +2819,7 @@ export default function App() {
                   src="https://i.imgur.com/mvDTm2K.png" 
                   alt="Braavos Real Estate" 
                   className="h-full w-full object-cover transition-transform duration-1000 hover:scale-105"
+                  referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-luxury-navy/60 to-transparent" />
                 <div className="absolute bottom-12 left-12 right-12 text-white">
