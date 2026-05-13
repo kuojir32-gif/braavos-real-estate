@@ -2827,8 +2827,8 @@ export default function App() {
                   <p className="text-xs font-black uppercase tracking-[0.3em] text-luxury-gold">Years of Dubai Market Expertise</p>
                 </div>
               </div>
-              <div className="absolute -top-10 -right-10 h-64 w-64 bg-white/50 backdrop-blur-xl rounded-full flex items-center justify-center border border-luxury-gold/10 hidden xl:flex">
-                <p className="text-center px-10 text-[10px] font-black uppercase tracking-widest text-luxury-navy leading-relaxed italic">
+              <div className="absolute -top-5 -right-5 h-32 w-32 bg-white/50 backdrop-blur-xl rounded-full flex items-center justify-center border border-luxury-gold/10 hidden xl:flex">
+                <p className="text-center px-4 text-[7px] font-black uppercase tracking-widest text-luxury-navy leading-relaxed italic">
                   "Exceeding expectations through integrity and local insight."
                 </p>
               </div>
