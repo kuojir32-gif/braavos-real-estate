@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "motion/react";
-import { Search, MapPin, Home, Key, Phone, Mail, Instagram, Facebook, Linkedin, Menu, X, Star, ArrowRight, CheckCircle2, MessageSquare, Send, Globe, ShieldCheck, Zap, ChevronDown, Tag, TrendingUp, Play, ExternalLink, SlidersHorizontal, Wallet, Calendar, Waves, CloudRain, Dumbbell, Users, Binoculars, PersonStanding, Flame, Baby, Lock, Plus, Check } from "lucide-react";
+import { Search, MapPin, Home, Key, Phone, Mail, Instagram, Facebook, Linkedin, Menu, X, Star, ArrowRight, CheckCircle2, MessageSquare, Send, Globe, ShieldCheck, Zap, ChevronDown, Tag, TrendingUp, Play, ExternalLink, SlidersHorizontal, Wallet, Calendar, Waves, CloudRain, Dumbbell, Users, Binoculars, PersonStanding, Flame, Baby, Lock, Plus, Check, Clapperboard, Sun, Flower2, Dog, Anchor, Utensils, Palmtree, Laptop, Target, Palette } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 import { GoogleGenAI, Type } from "@google/genai";
 
@@ -813,6 +813,303 @@ const FAKE_PROJECTS = [
         { unit: "Unit Selection", amount: "AED 100K" }
       ]
     }
+  },
+  {
+    id: 17,
+    title: "TIVANNO",
+    location: "JVC",
+    developer: "AYS Developers",
+    status: "High Yield",
+    image: "https://i.ibb.co/27QYBZ4h/Screenshot-2026-05-13-130245.png",
+    price: "From AED 1.45M",
+    completion: "Q4 2026",
+    type: "Project",
+    details: {
+      tagline: "Step into a Portal to Wonder",
+      highlights: [
+        "Business Lounge & 24/7 Concierge",
+        "Infinity Rooftop Pool & Jacuzzi",
+        "Private Cinema & Arcade Game Room",
+        "Electric Car Parking Stations",
+        "Kids' Saltwater Pool & Play Area"
+      ],
+      pricing: [
+        { unit: "1 Bedroom (6th Floor)", price: "AED 1,479,000", size: "989 sq.ft." },
+        { unit: "2 Bedroom (2nd Floor)", price: "AED 2,156,241", size: "1,377 sq.ft." },
+        { unit: "3 Bedroom + Pool", price: "AED 4,746,525", size: "3,063 sq.ft." }
+      ],
+      strategicAdvantages: [
+        "100% Investment Fund Ready",
+        "High ROI in JVC Prime Node",
+        "Premium Luxury Lifestyle Amenities",
+        "Smart Home Integration",
+        "Future-Ready Infrastructure"
+      ],
+      amenities: [
+        { name: "Infinity Rooftop Pool", icon: "Waves" },
+        { name: "Private Cinema", icon: "Clapperboard" },
+        { name: "Business Lounge", icon: "Users" },
+        { name: "Electric Car Parking", icon: "Zap" }
+      ],
+      eoi: [
+        { unit: "Priority Unit Selection", amount: "AED 100K" }
+      ]
+    }
+  },
+  {
+    id: 18,
+    title: "BREVA",
+    location: "JVC",
+    developer: "AYS Developers",
+    status: "Flash Offer",
+    image: "https://i.ibb.co/m59FsYTw/Screenshot-2026-05-13-130358.png",
+    price: "From AED 1.27M",
+    completion: "Q4 2026",
+    type: "Project",
+    details: {
+      tagline: "Coastal Elegance, Redefined",
+      highlights: [
+        "Flash Offer: Special 100% Payment Terms",
+        "Bespoke Coastal-Inspired Architecture",
+        "Rooftop Sun Deck & Lounge Access",
+        "Kids' Saltwater Pool & Yoga Garden",
+        "Superior 24/7 Concierge Service"
+      ],
+      pricing: [
+        { unit: "1 Bedroom (Unit 9)", price: "AED 1,268,891", size: "830 sq.ft." },
+        { unit: "1 Bedroom + Pool", price: "AED 1,367,182", size: "830 sq.ft." },
+        { unit: "2 Bedroom + Pool", price: "AED 2,211,849", size: "1,482 sq.ft." }
+      ],
+      strategicAdvantages: [
+        "Flash Pricing Discount Included",
+        "High Rental Appreciation Zone",
+        "Elite Community Management",
+        "Premium Waterfront Aesthetics",
+        "Secure Resident Arcade & Club"
+      ],
+      amenities: [
+        { name: "Rooftop Sun Deck", icon: "Sun" },
+        { name: "Kids' Saltwater Pool", icon: "Baby" },
+        { name: "Yoga Garden", icon: "Flower2" },
+        { name: "Arcade Game Room", icon: "Zap" }
+      ],
+      eoi: [
+        { unit: "Flash Reservation", amount: "AED 150K" }
+      ]
+    }
+  },
+  {
+    id: 19,
+    title: "VENTONE",
+    location: "JVC",
+    developer: "AYS Developers",
+    status: "Waterfront Luxury",
+    image: "https://i.ibb.co/svDpQMCb/Screenshot-2026-05-13-130535.png",
+    price: "From AED 1.39M",
+    completion: "Q1 2027",
+    type: "Project",
+    details: {
+      tagline: "Waterfront Living, Elevated",
+      highlights: [
+        "Stunning Marina & Skyline Views",
+        "Infinity Rooftop Infinity Pool",
+        "Private Cinema & Business Hub",
+        "Premium Integrated Home Tech",
+        "Landscaped Rooftop Sun Terrace"
+      ],
+      pricing: [
+        { unit: "1 Bedroom (3rd Floor)", price: "AED 1,386,167", size: "915 sq.ft." },
+        { unit: "2 Bedroom + Pool (Marina View)", price: "AED 2,338,840", size: "1,451 sq.ft." },
+        { unit: "2 Bedroom + Pool (Premium)", price: "AED 2,417,307", size: "1,451 sq.ft." }
+      ],
+      strategicAdvantages: [
+        "100% Investment Fund Selection",
+        "Unobstructed Marina Sky Vistas",
+        "Bespoke Waterfront Interiors",
+        "Energy Efficient Design",
+        "Dedicated Resident Concierge"
+      ],
+      amenities: [
+        { name: "Infinity Rooftop Pool", icon: "Waves" },
+        { name: "Marina View Terrace", icon: "Binoculars" },
+        { name: "Equipped Gym", icon: "Dumbbell" },
+        { name: "Jacuzzi", icon: "Waves" }
+      ],
+      eoi: [
+        { unit: "Marina Unit Selection", amount: "AED 125K" }
+      ]
+    }
+  },
+  {
+    id: 20,
+    title: "ASPIN GROVE",
+    location: "JVC",
+    developer: "AYS Developers",
+    status: "Community Focus",
+    image: "https://i.ibb.co/Df5VD7WF/Screenshot-2026-05-13-130656.png",
+    price: "From AED 514,774",
+    completion: "Q2 2027",
+    type: "Project",
+    details: {
+      tagline: "Urban Living, Simplified",
+      highlights: [
+        "Fully Equipped Modern Gym",
+        "Swimming Pool & Kids' Play Area",
+        "Landscaped Outdoor BBQ Spaces",
+        "Multi-Purpose Resident Lobby",
+        "24/7 Security & Covered Parking"
+      ],
+      pricing: [
+        { unit: "Studio (Series 11)", price: "AED 514,774", size: "359 sq.ft." },
+        { unit: "Studio (Series 6)", price: "AED 517,555", size: "361 sq.ft." },
+        { unit: "1 Bedroom (Series 7)", price: "AED 695,549", size: "643 sq.ft." },
+        { unit: "2 Bedroom (Series 12)", price: "AED 1,262,104", size: "983 sq.ft." }
+      ],
+      strategicAdvantages: [
+        "Accessible Entry-Level Investment",
+        "High Rental Demand Profile",
+        "Low Maintenance Costs",
+        "Functional Urban Layouts",
+        "Secure Family Environment"
+      ],
+      amenities: [
+        { name: "Swimming Pool", icon: "Waves" },
+        { name: "BBQ Area", icon: "Flame" },
+        { name: "Kids' Play Area", icon: "Baby" },
+        { name: "Fully Equipped Gym", icon: "Dumbbell" }
+      ],
+      eoi: [
+        { unit: "Studio/1BR Selection", amount: "AED 25K" },
+        { unit: "2BR Selection", amount: "AED 50K" }
+      ]
+    }
+  },
+  {
+    id: 21,
+    title: "Q GARDENS LOFTS",
+    location: "JVC",
+    developer: "AYS Developers",
+    status: "Bespoke Architecture",
+    image: "https://i.ibb.co/BHPT10sC/Screenshot-2026-05-13-130729.png",
+    price: "From AED 3.48M",
+    completion: "Q3 2027",
+    type: "Project",
+    details: {
+      tagline: "A Masterpiece of Urban Architecture",
+      highlights: [
+        "Exclusive Duplex Collection residences",
+        "Rooftop Infinity Pool & Sky Garden",
+        "Jogging Track & Squash Court",
+        "Private Pool & Jacuzzi Units Available",
+        "Fully Furnished Modern Interiors"
+      ],
+      pricing: [
+        { unit: "3 Bed Duplex (Unit 1601)", price: "AED 3,480,038", size: "1,827 sq.ft." },
+        { unit: "3 Bed Duplex (Unit 105)", price: "AED 3,690,000", size: "2,204 sq.ft." },
+        { unit: "3 Bed Duplex + Pool (Unit 109)", price: "AED 4,292,158", size: "2,508 sq.ft." },
+        { unit: "4 Bed Duplex + Infinity Pool", price: "AED 4,950,000", size: "5,926 sq.ft." }
+      ],
+      strategicAdvantages: [
+        "Unique Duplex Investment Asset",
+        "Vertical Community Living",
+        "Premium Finish Materiality",
+        "Integrated Wellness Facilities",
+        "High-End Property Management"
+      ],
+      amenities: [
+        { name: "Rooftop Infinity Pool", icon: "Waves" },
+        { name: "Squash Court", icon: "Zap" },
+        { name: "Jogging Track", icon: "PersonStanding" },
+        { name: "Sky Garden", icon: "Flower2" }
+      ],
+      eoi: [
+        { unit: "Duplex Reservation", amount: "AED 200K" }
+      ]
+    }
+  },
+  {
+    id: 22,
+    title: "Q GARDENS ALIYA",
+    location: "JVC",
+    developer: "AYS Developers",
+    status: "Luxury Lifestyle",
+    image: "https://i.ibb.co/hRwXBYbK/Screenshot-2026-05-13-131328.png",
+    price: "From AED 1.75M",
+    completion: "Q4 2027",
+    type: "Project",
+    details: {
+      tagline: "The Luxuries of Royal Amenities",
+      highlights: [
+        "70-Month Strategic Payment Plan",
+        "Private Movie Theater & Arcade",
+        "Squash Court & Zen Yoga Room",
+        "Rooftop Jogging Track & Sky View",
+        "Resort-Style Saltwater Pool"
+      ],
+      pricing: [
+        { unit: "1 Bedroom F (Unit 104)", price: "AED 1,754,968", size: "938 sq.ft." },
+        { unit: "1 Bedroom B (Premium)", price: "AED 1,770,229", size: "946 sq.ft." },
+        { unit: "1 Bed + Pool (Unit 102)", price: "AED 2,494,934", size: "1,303 sq.ft." }
+      ],
+      strategicAdvantages: [
+        "Flexible 70-Month Installments",
+        "Wellness-Driven Community Design",
+        "Exceptional Amenity-to-Resident Ratio",
+        "Modern Architecture Statement",
+        "Proximity to Major Commuter Routes"
+      ],
+      amenities: [
+        { name: "Private Cinema", icon: "Clapperboard" },
+        { name: "Arcade Game Room", icon: "Zap" },
+        { name: "Salt Water Pool", icon: "Waves" },
+        { name: "Yoga Room", icon: "PersonStanding" }
+      ],
+      eoi: [
+        { unit: "Royal Selection", amount: "AED 100K" }
+      ]
+    }
+  },
+  {
+    id: 23,
+    title: "IMPZ Landmark",
+    location: "IMPZ",
+    developer: "AYS Developers",
+    status: "Coming Soon",
+    image: "https://i.ibb.co/HfG40L6m/Screenshot-2026-05-13-131509.png",
+    price: "Starting from AED 450k",
+    completion: "Q4 2028",
+    type: "Project",
+    details: {
+      tagline: "Wellness-Inspired Living",
+      highlights: [
+        "AI-Powered Smart Fitness Hub",
+        "Olympic-Size Infinity Pool & Jacuzzi",
+        "Infrared Sauna & Wellness Center",
+        "Indoor Golf Simulator & Arcade",
+        "Bespoke Vertical Garden Architecture"
+      ],
+      pricing: [
+        { unit: "Studios", price: "From AED 450k", size: "From 375 sq.ft." },
+        { unit: "1 Bedroom", price: "From AED 750k", size: "From 750 sq.ft." },
+        { unit: "2 Bedroom", price: "From AED 1.1M", size: "From 1,100 sq.ft." }
+      ],
+      strategicAdvantages: [
+        "First-Mover High Growth Location",
+        "Smart Tech Integrated Living",
+        "Wellness-Centric Philosophy",
+        "Executive Business Networking Hub",
+        "EV Charging Ready Infrastructure"
+      ],
+      amenities: [
+        { name: "AI Smart Gym", icon: "Dumbbell" },
+        { name: "Indoor Golf", icon: "Target" },
+        { name: "Olympic Infinity Pool", icon: "Waves" },
+        { name: "Vertical Gardens", icon: "Flower2" }
+      ],
+      eoi: [
+        { unit: "Pre-Launch Priority", amount: "AED 50K" }
+      ]
+    }
   }
 ];
 const FAKE_REVIEWS = [
@@ -940,8 +1237,8 @@ const PropertyDetailModal = ({ property, isOpen, onClose, onEnquireSubmit, isSub
             <div className="flex-1 overflow-y-auto custom-scrollbar flex flex-col md:flex-row min-h-0">
               {/* Left side: Property Details */}
               <div className="md:w-3/5 bg-gray-50 flex flex-col">
-                <div className="relative min-h-[40vh] md:min-h-[450px] shrink-0 bg-luxury-navy flex items-center justify-center">
-                  <img src={property.image} alt={property.title} className="max-w-full max-h-full object-contain" />
+                <div className="relative min-h-[40vh] md:min-h-[450px] shrink-0 bg-luxury-navy flex items-center justify-center overflow-hidden">
+                  <img src={property.image} alt={property.title} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                   
                   <div className="absolute bottom-8 left-8">
@@ -1117,7 +1414,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose, onEnquireSubmit, isSubmi
               {/* Left Section: Immersive Content */}
               <div className="md:w-3/5 bg-white border-r border-gray-100/50">
                 <div className="relative h-[45vh] md:h-[75vh] shrink-0 overflow-hidden bg-luxury-navy">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-contain" />
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                   <div className="absolute bottom-10 left-8 md:bottom-16 md:left-16 right-8 md:right-16">
                     <div className="flex items-center gap-2 mb-4 md:mb-6">
@@ -1186,7 +1483,41 @@ const ProjectDetailModal = ({ project, isOpen, onClose, onEnquireSubmit, isSubmi
                     </div>
                   )}
 
-                  {/* Payment Strategy and Lifestyle Amenities section removed per user request */}
+                  {project.details.amenities && (
+                    <div className="mb-16 md:mb-24">
+                      <h3 className="text-luxury-gold font-black uppercase tracking-[0.5em] text-[9px] md:text-[10px] mb-8 md:mb-10">Lifestyle Amenities</h3>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-8">
+                        {project.details.amenities.map((amenity: any, i: number) => {
+                          const IconComponent = (amenity.icon === 'Waves' ? Waves : 
+                                               amenity.icon === 'Dumbbell' ? Dumbbell :
+                                               amenity.icon === 'Users' ? Users :
+                                               amenity.icon === 'Binoculars' ? Binoculars :
+                                               amenity.icon === 'PersonStanding' ? PersonStanding :
+                                               amenity.icon === 'Flame' ? Flame :
+                                               amenity.icon === 'Baby' ? Baby :
+                                               amenity.icon === 'Zap' ? Zap :
+                                               amenity.icon === 'Clapperboard' ? Clapperboard :
+                                               amenity.icon === 'Sun' ? Sun :
+                                               amenity.icon === 'Flower2' ? Flower2 :
+                                               amenity.icon === 'Palette' ? Palette :
+                                               amenity.icon === 'Dog' ? Dog :
+                                               amenity.icon === 'Anchor' ? Anchor :
+                                               amenity.icon === 'Utensils' ? Utensils :
+                                               amenity.icon === 'Palmtree' ? Palmtree :
+                                               amenity.icon === 'Laptop' ? Laptop :
+                                               amenity.icon === 'Target' ? Target : Zap);
+                          return (
+                            <div key={i} className="flex flex-col items-center text-center p-6 rounded-3xl bg-luxury-cream/10 border border-luxury-gold/5 group hover:bg-white hover:shadow-2xl transition-all">
+                              <div className="h-14 w-14 rounded-full bg-white flex items-center justify-center text-luxury-gold mb-4 shadow-sm group-hover:scale-110 transition-transform">
+                                <IconComponent className="h-6 w-6" />
+                              </div>
+                              <p className="text-[10px] font-black uppercase tracking-widest text-luxury-navy/60 group-hover:text-luxury-gold transition-colors">{amenity.name}</p>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -1888,7 +2219,7 @@ const PropertyExplorer = ({ isOpen, onClose, mode, onLogoClick, onEnquire, onOpe
                   <div className="space-y-2">
                     <label className="text-[10px] font-serif font-medium text-luxury-navy/40 uppercase tracking-[0.2em] flex items-center gap-2 mb-1"><MapPin className="h-3 w-3 text-luxury-gold" /> Location</label>
                     <div className="flex flex-col gap-0.5">
-                      {["All", "Palm Jumeirah", "Downtown Dubai", "Dubai Hills", "Emirates Hills", "Business Bay", "Dubai Marina", "JVC", "Al Marjan Island", "Wadi Al Safa 2", "Al Thanyah Fifth", "Bukadra", "Nadd Hessa", "Palm Deira", "Madinat Dubai Almelaheyah"].map(loc => (
+                      {["All", "Palm Jumeirah", "Downtown Dubai", "Dubai Hills", "Emirates Hills", "Business Bay", "Dubai Marina", "JVC", "Al Marjan Island", "Wadi Al Safa 2", "Al Thanyah Fifth", "Bukadra", "Nadd Hessa", "Palm Deira", "Madinat Dubai Almelaheyah", "IMPZ"].map(loc => (
                         <button 
                           key={loc}
                           onClick={() => setActiveFilters({...activeFilters, location: loc})}
@@ -1936,7 +2267,7 @@ const PropertyExplorer = ({ isOpen, onClose, mode, onLogoClick, onEnquire, onOpe
                     <div className="space-y-2">
                       <label className="text-[10px] font-serif font-medium text-luxury-navy/40 uppercase tracking-[0.2em] flex items-center gap-2 mb-1"><CheckCircle2 className="h-3 w-3 text-luxury-gold" /> Developer</label>
                       <div className="flex flex-col gap-0.5">
-                        {["All", "DAMAC", "SOBHA", "EMAAR", "NAKHEEL", "MERAAS", "IMTIAZ", "IMAN", "Dar Global", "Ellington Properties"].map(dev => (
+                        {["All", "DAMAC", "SOBHA", "EMAAR", "NAKHEEL", "MERAAS", "IMTIAZ", "IMAN", "Dar Global", "Ellington Properties", "AYS Developers"].map(dev => (
                           <button 
                             key={dev}
                             onClick={() => setActiveFilters({...activeFilters, developer: dev})}
