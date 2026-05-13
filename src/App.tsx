@@ -490,46 +490,7 @@ const FAKE_PROJECTS = [
       ]
     }
   },
-  {
-    id: 8,
-    title: "Ocean House",
-    location: "Palm Jumeirah",
-    developer: "Ellington Properties",
-    status: "Trophy Asset",
-    image: "https://i.ibb.co/dsRnSdPZ/Screenshot-2026-05-13-111523.png",
-    price: "From AED 22.58M",
-    completion: "Q4 2027",
-    type: "Project",
-    details: {
-      tagline: "Ultra-Luxury Waterfront Masterpiece",
-      highlights: [
-        "The most prestigious address on Palm Jumeirah",
-        "Direct Arabian Gulf views from every residence",
-        "Ground floor garden villas with private lap pools",
-        "Custom-designed interiors by world-class specialists",
-        "Triple-height gallery living spaces"
-      ],
-      pricing: [
-        { unit: "2 BR Premium", price: "AED 22.58M", size: "4,213 sq ft" },
-        { unit: "4 BR Villa-Apt", price: "AED 56.28M", size: "9,947 sq ft" }
-      ],
-      strategicAdvantages: [
-        "3 Rare Trophy Units Remaining",
-        "Palm Jumeirah Prestige Address",
-        "Massive Internal Living Areas",
-        "25 AED/sqft Service Charge",
-        "Ultra-HNWI Community Security"
-      ],
-      amenities: [
-        { name: "Olympia Fit Hub", icon: "Dumbbell" },
-        { name: "Direct Beach Cove", icon: "Waves" },
-        { name: "Private Cinema", icon: "Monitor" }
-      ],
-      eoi: [
-        { unit: "Bespoke Invitation Only", amount: "AED 1M+" }
-      ]
-    }
-  },
+
   {
     id: 9,
     title: "One River Point",
