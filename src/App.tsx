@@ -321,6 +321,537 @@ const FAKE_PROJECTS = [
         { unit: "Duplex Selection", amount: "AED 250K" }
       ]
     }
+  },
+  {
+    id: 4,
+    title: "Belgravia Gardens",
+    location: "Wadi Al Safa 2",
+    developer: "Ellington Properties",
+    status: "Limited Availability",
+    image: "https://i.ibb.co/dzFmZf3/Screenshot-2026-05-13-110712.png",
+    price: "From AED 2.03M",
+    completion: "Q4 2026",
+    type: "Project",
+    details: {
+      tagline: "Refined Urban Living in Wadi Al Safa",
+      highlights: [
+        "Contemporary design with signature Ellington quality",
+        "Lush landscaped gardens and interactive outdoor spaces",
+        "High-performance appliances and designer cabinetry",
+        "Floor-to-ceiling windows with panoramic community views",
+        "High rental yield potential in a growing residential hub"
+      ],
+      pricing: [
+        { unit: "2 BR", price: "From AED 2.03M", size: "1,245 - 1,450 sq ft" },
+        { unit: "3 BR", price: "Up to AED 2.93M", size: "1,550 - 1,770 sq ft" }
+      ],
+      paymentPlans: [
+        { title: "Signature Plan", details: "70/30 Payment Structure | 70% Construction | 30% Handover", icon: "Wallet" }
+      ],
+      strategicAdvantages: [
+        "Wadi Al Safa 2 High-Demand Area",
+        "15 AED/sqft Low Service Charge",
+        "7 Exclusive Units Remaining",
+        "Award-Winning Developer Heritage",
+        "Close Proximity to Major Retail Hubs"
+      ],
+      amenities: [
+        { name: "Yoga Studio", icon: "Flower2" },
+        { name: "Resort Pool", icon: "Waves" },
+        { name: "Art Gallery Lobby", icon: "Palette" },
+        { name: "Kid's Play Zone", icon: "Baby" }
+      ],
+      eoi: [
+        { unit: "Unit Reservation", amount: "AED 50K" }
+      ]
+    }
+  },
+  {
+    id: 5,
+    title: "Costa Mare",
+    location: "Al Marjan Island",
+    developer: "Ellington Properties",
+    status: "Prime Coastal",
+    image: "https://i.ibb.co/twZTYMv1/Screenshot-2026-05-13-111045.png",
+    price: "From AED 2.84M",
+    completion: "Q3 2027",
+    type: "Project",
+    details: {
+      tagline: "Italian Riviera Living on Al Marjan Island",
+      highlights: [
+        "Ground floor residences with expansive private gardens",
+        "Direct beach access and sea-front promenade",
+        "Curated Mediterranean-style interior finishes",
+        "Smart home automation for climate and lighting",
+        "Strategic investor location near integrated resorts"
+      ],
+      pricing: [
+        { unit: "1 BR", price: "From AED 2.84M", size: "744 - 950 sq ft" },
+        { unit: "2 BR", price: "Up to AED 5.54M", size: "1,100 - 1,531 sq ft" }
+      ],
+      paymentPlans: [
+        { title: "Coastal Investment Plan", details: "60/40 Payment Plan | 60% During Construction | 40% On Handover", icon: "Calendar" }
+      ],
+      strategicAdvantages: [
+        "20 Units Premium Inventory",
+        "High-Growth Al Marjan Node",
+        "Spacious Ground Floor Villas",
+        "19 AED/sqft Service Charge",
+        "Exclusive Beach Club Access"
+      ],
+      amenities: [
+        { name: "Private Beach", icon: "Palmtree" },
+        { name: "Alfresco Dining", icon: "Utensils" },
+        { name: "Jetty Access", icon: "Anchor" }
+      ],
+      eoi: [
+        { unit: "Coastal Unit", amount: "AED 100K" }
+      ]
+    }
+  },
+  {
+    id: 6,
+    title: "Eltiera Views",
+    location: "Al Thanyah Fifth",
+    developer: "Ellington Properties",
+    status: "High Demand",
+    image: "https://i.ibb.co/gM9JtWm7/Screenshot-2026-05-13-111205.png",
+    price: "From AED 2.17M",
+    completion: "Q1 2027",
+    type: "Project",
+    details: {
+      tagline: "Panoramic Sophistication in Al Thanyah",
+      highlights: [
+        "Centrally located with stunning skyline views",
+        "Bespoke joinery and premium kitchen island designs",
+        "Wellness-focused community architecture",
+        "Double-height lobby with concierge services",
+        "Excellent connectivity to Sheikh Zayed Road"
+      ],
+      pricing: [
+        { unit: "1 BR", price: "From AED 2.17M", size: "796 - 900 sq ft" },
+        { unit: "2 BR", price: "AED 3.2M", size: "1,150 - 1,300 sq ft" },
+        { unit: "3 BR", price: "Up to AED 4.84M", size: "1,450 - 1,672 sq ft" }
+      ],
+      strategicAdvantages: [
+        "Limited 14-Unit Selection",
+        "Strategic Central Logistics",
+        "21 AED/sqft Service Charge",
+        "Premium Investor Yields",
+        "Iconic Architectural Design"
+      ],
+      amenities: [
+        { name: "Infinity Pool", icon: "Waves" },
+        { name: "Pet Spa", icon: "Dog" },
+        { name: "Cloud Cinema", icon: "Clapperboard" }
+      ],
+      eoi: [
+        { unit: "Reservation", amount: "AED 75K" }
+      ]
+    }
+  },
+  {
+    id: 7,
+    title: "Mercer House",
+    location: "Al Thanyah Fifth",
+    developer: "Ellington Properties",
+    status: "Ultra-Premium",
+    image: "https://i.ibb.co/tpvfGyjV/Screenshot-2026-05-13-111422.png",
+    price: "From AED 7.24M",
+    completion: "Q2 2027",
+    type: "Project",
+    details: {
+      tagline: "The Pinnacle of Spacious Luxury",
+      highlights: [
+        "Oversized 3-bedroom residences only",
+        "Private lift lobbies for major units",
+        "Wrap-around terraces with sunset views",
+        "Integrated Miele appliances throughout",
+        "Exemplary finishes using rare stone and timber"
+      ],
+      pricing: [
+        { unit: "3 BR (Large)", price: "From AED 7.24M", size: "2,134 sq ft" },
+        { unit: "3 BR (Grand)", price: "Up to AED 7.71M", size: "2,590 sq ft" }
+      ],
+      strategicAdvantages: [
+        "Only 4 Highly Exclusive Units",
+        "Ultra-Spacious Luxury Footprints",
+        "22 AED/sqft Service Charge",
+        "Elite Private Community",
+        "Premium Resale Valuation"
+      ],
+      amenities: [
+        { name: "Private Concierge", icon: "Users" },
+        { name: "Wine Cellar", icon: "GlassWater" },
+        { name: "Exclusive Library", icon: "BookOpen" }
+      ],
+      eoi: [
+        { unit: "Priority Unit", amount: "AED 250K" }
+      ]
+    }
+  },
+  {
+    id: 8,
+    title: "Ocean House",
+    location: "Palm Jumeirah",
+    developer: "Ellington Properties",
+    status: "Trophy Asset",
+    image: "https://i.ibb.co/dsRnSdPZ/Screenshot-2026-05-13-111523.png",
+    price: "From AED 22.58M",
+    completion: "Q4 2027",
+    type: "Project",
+    details: {
+      tagline: "Ultra-Luxury Waterfront Masterpiece",
+      highlights: [
+        "The most prestigious address on Palm Jumeirah",
+        "Direct Arabian Gulf views from every residence",
+        "Ground floor garden villas with private lap pools",
+        "Custom-designed interiors by world-class specialists",
+        "Triple-height gallery living spaces"
+      ],
+      pricing: [
+        { unit: "2 BR Premium", price: "AED 22.58M", size: "4,213 sq ft" },
+        { unit: "4 BR Villa-Apt", price: "AED 56.28M", size: "9,947 sq ft" }
+      ],
+      strategicAdvantages: [
+        "3 Rare Trophy Units Remaining",
+        "Palm Jumeirah Prestige Address",
+        "Massive Internal Living Areas",
+        "25 AED/sqft Service Charge",
+        "Ultra-HNWI Community Security"
+      ],
+      amenities: [
+        { name: "Olympia Fit Hub", icon: "Dumbbell" },
+        { name: "Direct Beach Cove", icon: "Waves" },
+        { name: "Private Cinema", icon: "Monitor" }
+      ],
+      eoi: [
+        { unit: "Bespoke Invitation Only", amount: "AED 1M+" }
+      ]
+    }
+  },
+  {
+    id: 9,
+    title: "One River Point",
+    location: "Business Bay",
+    developer: "Ellington Properties",
+    status: "Canal Front",
+    image: "https://i.ibb.co/pBhCxpnT/Screenshot-2026-05-13-111626.png",
+    price: "From AED 3.33M",
+    completion: "Q1 2027",
+    type: "Project",
+    details: {
+      tagline: "Modernist Waterfront Living",
+      highlights: [
+        "Uninterrupted views of Dubai Water Canal",
+        "Stunning contemporary facade with smart integration",
+        "Bespoke European sanitaryware and cabinetry",
+        "Vibrant urban lifestyle with waterfront promenade",
+        "Superior proximity to Burj Khalifa and Downtown"
+      ],
+      pricing: [
+        { unit: "1 BR Canal View", price: "From AED 3.33M", size: "1,060 - 1,200 sq ft" },
+        { unit: "2 BR Executive", price: "Up to AED 5.35M", size: "1,500 - 1,796 sq ft" }
+      ],
+      strategicAdvantages: [
+        "7 Canal-Front Units Available",
+        "Business Bay Investment Node",
+        "20 AED/sqft Service Charge",
+        "High Appreciation Potential",
+        "Iconic Waterfront Promenade"
+      ],
+      amenities: [
+        { name: "Canal Infinity Pool", icon: "Waves" },
+        { name: "Terrace Garden", icon: "Flower2" },
+        { name: "Co-working Studio", icon: "Laptop" }
+      ],
+      eoi: [
+        { unit: "Unit Selection", amount: "AED 100K" }
+      ]
+    }
+  },
+  {
+    id: 10,
+    title: "Playa Del Sol",
+    location: "Al Marjan Island",
+    developer: "Ellington Properties",
+    status: "Resort Living",
+    image: "https://i.ibb.co/chVVtTkj/Screenshot-2026-05-13-111715.png",
+    price: "From AED 3.49M",
+    completion: "Q2 2027",
+    type: "Project",
+    details: {
+      tagline: "Sun-Drenched Island Residences",
+      highlights: [
+        "Resort-style amenities with island tranquility",
+        "Extensive natural light optimization in design",
+        "Organic material palettes and textures",
+        "Prime vacation rental location",
+        "Minutes away from major international resorts"
+      ],
+      pricing: [
+        { unit: "2 BR", price: "From AED 3.49M", size: "1,264 - 1,500 sq ft" },
+        { unit: "3 BR", price: "Up to AED 5.77M", size: "1,800 - 2,264 sq ft" }
+      ],
+      strategicAdvantages: [
+        "5 Units Limited Inventory",
+        "16 AED/sqft Competitive SC",
+        "Premier Island Resort Setting",
+        "Exceptional ROI Track Record",
+        "Family-Centric Low Rise"
+      ],
+      amenities: [
+        { name: "Tropical Pool", icon: "Waves" },
+        { name: "Outdoor Spa", icon: "Waves" },
+        { name: "Kids' Aqua Park", icon: "Baby" }
+      ],
+      eoi: [
+        { unit: "Island Unit", amount: "AED 100K" }
+      ]
+    }
+  },
+  {
+    id: 11,
+    title: "Portside Square",
+    location: "Madinat Dubai Almelaheyah",
+    developer: "Ellington Properties",
+    status: "Historical Modern",
+    image: "https://i.ibb.co/5WXnGBnW/Screenshot-2026-05-13-111925.png",
+    price: "From AED 2.36M",
+    completion: "Q3 2027",
+    type: "Project",
+    details: {
+      tagline: "Port-Side Elegance Redefined",
+      highlights: [
+        "Unique harbor-side location with modern flair",
+        "Vibrant neighborhood with heritage character",
+        "High-spec interiors with smart home readiness",
+        "Efficient layouts maximizing internal space",
+        "Community-focused central plaza"
+      ],
+      pricing: [
+        { unit: "1 BR", price: "From AED 2.36M", size: "771 - 900 sq ft" },
+        { unit: "2 BR", price: "AED 3.8M", size: "1,200 - 1,400 sq ft" },
+        { unit: "3 BR", price: "Up to AED 5.40M", size: "1,550 - 1,724 sq ft" }
+      ],
+      strategicAdvantages: [
+        "13 Active Portside Units",
+        "Emerging Heritage District",
+        "17 AED/sqft Service Charge",
+        "High Occupancy Forecast",
+        "Bespoke Interior Finishes"
+      ],
+      amenities: [
+        { name: "Harbor Terrace", icon: "View" },
+        { name: "Modern Gym", icon: "Dumbbell" },
+        { name: "Artisanal Cafe", icon: "Coffee" }
+      ],
+      eoi: [
+        { unit: "District Unit", amount: "AED 50K" }
+      ]
+    }
+  },
+  {
+    id: 12,
+    title: "Riverton House",
+    location: "Bukadra",
+    developer: "Ellington Properties",
+    status: "Growth Node",
+    image: "https://i.ibb.co/fdWN6RM1/Screenshot-2026-05-13-112014.png",
+    price: "From AED 2.23M",
+    completion: "Q4 2027",
+    type: "Project",
+    details: {
+      tagline: "Serene Sophistication in Bukadra",
+      highlights: [
+        "High-fidelity finishes in a developing luxury hub",
+        "Strategic connectivity to Meydan and Downtown",
+        "Intelligent floor plans with integrated storage",
+        "Premium white goods and smart climate control",
+        "Lush community views and quiet surroundings"
+      ],
+      pricing: [
+        { unit: "1 BR", price: "From AED 2.23M", size: "784 - 950 sq ft" },
+        { unit: "2 BR", price: "Up to AED 4.04M", size: "1,200 - 1,403 sq ft" }
+      ],
+      strategicAdvantages: [
+        "15 Premier Units Available",
+        "Meydan Proximity Growth",
+        "16 AED/sqft Service Charge",
+        "Strategic Logistics Hub",
+        "Signature Ellington Quality"
+      ],
+      amenities: [
+        { name: "Leisure Pool", icon: "Waves" },
+        { name: "Social Lounge", icon: "Users" },
+        { name: "Fitness Deck", icon: "Dumbbell" }
+      ],
+      eoi: [
+        { unit: "Bukadra Selection", amount: "AED 75K" }
+      ]
+    }
+  },
+  {
+    id: 13,
+    title: "The Highgrove",
+    location: "Bukadra",
+    developer: "Ellington Properties",
+    status: "Elevated Living",
+    image: "https://i.ibb.co/23hSCT0x/Screenshot-2026-05-13-112128.png",
+    price: "From AED 2.29M",
+    completion: "Q1 2028",
+    type: "Project",
+    details: {
+      tagline: "A New Standard of Bukadra Luxury",
+      highlights: [
+        "Architectural milestone in the Bukadra skyline",
+        "Expansive balconies with master-community views",
+        "High-end Italian kitchen systems",
+        "Sustainable architecture and energy-efficient systems",
+        "Wellness-centric podium level"
+      ],
+      pricing: [
+        { unit: "1 BR", price: "From AED 2.29M", size: "798 - 950 sq ft" },
+        { unit: "2 BR", price: "AED 3.7M", size: "1,200 - 1,400 sq ft" },
+        { unit: "3 BR", price: "Up to AED 5.01M", size: "1,550 - 1,712 sq ft" }
+      ],
+      strategicAdvantages: [
+        "8 Exclusive High-Floor Units",
+        "Modernist Skyline Design",
+        "18 AED/sqft Service Charge",
+        "Prime Investor Inventory",
+        "Resort-Style Wellness Deck"
+      ],
+      amenities: [
+        { name: "Sky GardenPool", icon: "Waves" },
+        { name: "Bio-Gym", icon: "Dumbbell" },
+        { name: "Meditation Deck", icon: "Flower2" }
+      ],
+      eoi: [
+        { unit: "Sky Selection", amount: "AED 100K" }
+      ]
+    }
+  },
+  {
+    id: 14,
+    title: "The Hillgate",
+    location: "Nadd Hessa",
+    developer: "Ellington Properties",
+    status: "Value Luxury",
+    image: "https://i.ibb.co/tPbCSwQq/Screenshot-2026-05-13-112218.png",
+    price: "From AED 2.12M",
+    completion: "Q2 2028",
+    type: "Project",
+    details: {
+      tagline: "Affordable Elegance in Nadd Hessa",
+      highlights: [
+        "Best value-to-luxury ratio in the portfolio",
+        "Spacious 2-bedroom layouts with premium finishes",
+        "Vibrant family-oriented neighborhood",
+        "Modern facade with signature Ellington motifs",
+        "High internal quality and durability"
+      ],
+      pricing: [
+        { unit: "2 BR", price: "From AED 2.12M", size: "1,197 sq ft" },
+        { unit: "2 BR (Large)", price: "Up to AED 2.22M", size: "1,246 sq ft" }
+      ],
+      strategicAdvantages: [
+        "4 Limited 2BR Units",
+        "Most Affordable Portfolio Entry",
+        "16 AED/sqft Service Charge",
+        "High Rental Demand Node",
+        "Nadd Hessa Strategic Point"
+      ],
+      amenities: [
+        { name: "Community Pool", icon: "Waves" },
+        { name: "Outdoor Gym", icon: "Dumbbell" },
+        { name: "Barbecue Grove", icon: "Utensils" }
+      ],
+      eoi: [
+        { unit: "Unit Hold", amount: "AED 40K" }
+      ]
+    }
+  },
+  {
+    id: 15,
+    title: "The Meriva Collection",
+    location: "Palm Deira",
+    developer: "Ellington Properties",
+    status: "Coastal Chic",
+    image: "https://i.ibb.co/bMh2xP8R/Screenshot-2026-05-13-112310.png",
+    price: "From AED 3.01M",
+    completion: "Q4 2027",
+    type: "Project",
+    details: {
+      tagline: "Island Living in the New Dubai Hub",
+      highlights: [
+        "Exclusive island location on the nascent Palm Deira",
+        "Breathtaking views of the open sea and new marina",
+        "Light-filled interiors with high-performance glass",
+        "Premium amenities including private marina access",
+        "Groundbreaking investment opportunity in Deira Islands"
+      ],
+      pricing: [
+        { unit: "1 BR", price: "From AED 3.01M", size: "834 - 1,100 sq ft" },
+        { unit: "2 BR", price: "AED 5.5M", size: "1,400 - 1,700 sq ft" },
+        { unit: "3 BR", price: "Up to AED 9.63M", size: "2,000 - 2,395 sq ft" }
+      ],
+      strategicAdvantages: [
+        "12 Premier Island Units",
+        "Palm Deira First-Mover Growth",
+        "18 AED/sqft Service Charge",
+        "Marina District Lifestyle",
+        "Bespoke Waterfront Design"
+      ],
+      amenities: [
+        { name: "Marina View Pool", icon: "Waves" },
+        { name: "Private Sun Deck", icon: "Sun" },
+        { name: "Beach Club Access", icon: "Palmtree" }
+      ],
+      eoi: [
+        { unit: "Island Selection", amount: "AED 150K" }
+      ]
+    }
+  },
+  {
+    id: 16,
+    title: "The Quayside",
+    location: "Business Bay",
+    developer: "Ellington Properties",
+    status: "Ready for Delivery",
+    image: "https://i.ibb.co/p7nmCfR/Screenshot-2026-05-13-112403.png",
+    price: "From AED 3.84M",
+    completion: "Ready / Q4 2026",
+    type: "Project",
+    details: {
+      tagline: "Ultimate Canal-Front Refinement",
+      highlights: [
+        "Prime location directly on the Marasi Drive canal frontage",
+        "Identical high-performance floor plans for consistent quality",
+        "Floor-to-ceiling vistas of the skyline and canal",
+        "Direct access to the waterfront boardwalk",
+        "Sophisticated residential lobby with art installations"
+      ],
+      pricing: [
+        { unit: "2 BR (Regular)", price: "From AED 3.84M", size: "1,421 sq ft" },
+        { unit: "2 BR (High Floor)", price: "Up to AED 3.94M", size: "1,421 sq ft" }
+      ],
+      strategicAdvantages: [
+        "3 Final 2BR Units (Specialized)",
+        "Prime Marasi Drive Location",
+        "18 AED/sqft Service Charge",
+        "Immediate Tenant Ready",
+        "Iconic Skyline Proximity"
+      ],
+      amenities: [
+        { name: "Canal-View Deck", icon: "Waves" },
+        { name: "Technique Gym", icon: "Dumbbell" },
+        { name: "Executive Lounge", icon: "Users" }
+      ],
+      eoi: [
+        { unit: "Unit Selection", amount: "AED 100K" }
+      ]
+    }
   }
 ];
 const FAKE_REVIEWS = [
@@ -706,7 +1237,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose, onEnquireSubmit, isSubmi
                         <p className="text-luxury-gold font-black uppercase tracking-[0.5em] text-[9px] md:text-[10px]">High Yield Investment</p>
                       </div>
                       <h3 className="text-3xl md:text-5xl font-serif font-bold text-luxury-navy mb-5 md:mb-8">Secure Your Priority Slot</h3>
-                      <p className="text-gray-500 font-light leading-relaxed text-sm md:text-base">Submit your Expression of Interest to receive priority unit selection and pre-launch pricing advantages at RAW DISTRICT.</p>
+                      <p className="text-gray-500 font-light leading-relaxed text-sm md:text-base">Submit your Expression of Interest to receive priority unit selection and pre-launch pricing advantages at {project.title}.</p>
                   </div>
 
                   <div className="grid gap-3 md:gap-4 mb-10 md:mb-16">
@@ -1396,7 +1927,7 @@ const PropertyExplorer = ({ isOpen, onClose, mode, onLogoClick, onEnquire, onOpe
                   <div className="space-y-2">
                     <label className="text-[10px] font-serif font-medium text-luxury-navy/40 uppercase tracking-[0.2em] flex items-center gap-2 mb-1"><MapPin className="h-3 w-3 text-luxury-gold" /> Location</label>
                     <div className="flex flex-col gap-0.5">
-                      {["All", "Palm Jumeirah", "Downtown Dubai", "Dubai Hills", "Emirates Hills", "Business Bay", "Dubai Marina", "JVC", "Al Marjan Island"].map(loc => (
+                      {["All", "Palm Jumeirah", "Downtown Dubai", "Dubai Hills", "Emirates Hills", "Business Bay", "Dubai Marina", "JVC", "Al Marjan Island", "Wadi Al Safa 2", "Al Thanyah Fifth", "Bukadra", "Nadd Hessa", "Palm Deira", "Madinat Dubai Almelaheyah"].map(loc => (
                         <button 
                           key={loc}
                           onClick={() => setActiveFilters({...activeFilters, location: loc})}
@@ -1444,7 +1975,7 @@ const PropertyExplorer = ({ isOpen, onClose, mode, onLogoClick, onEnquire, onOpe
                     <div className="space-y-2">
                       <label className="text-[10px] font-serif font-medium text-luxury-navy/40 uppercase tracking-[0.2em] flex items-center gap-2 mb-1"><CheckCircle2 className="h-3 w-3 text-luxury-gold" /> Developer</label>
                       <div className="flex flex-col gap-0.5">
-                        {["All", "DAMAC", "SOBHA", "EMAAR", "NAKHEEL", "MERAAS", "IMTIAZ", "IMAN", "Dar Global"].map(dev => (
+                        {["All", "DAMAC", "SOBHA", "EMAAR", "NAKHEEL", "MERAAS", "IMTIAZ", "IMAN", "Dar Global", "Ellington Properties"].map(dev => (
                           <button 
                             key={dev}
                             onClick={() => setActiveFilters({...activeFilters, developer: dev})}
@@ -1880,7 +2411,7 @@ export default function App() {
               transition={{ x: { repeat: Infinity, duration: 25, ease: "linear" } }}
               className="flex gap-20 items-center whitespace-nowrap px-10"
             >
-              {["EMAAR", "DAMAC", "NAKHEEL", "SOBHA", "MERAAS", "BINGHATTI", "EMAAR", "DAMAC", "NAKHEEL", "SOBHA", "MERAAS", "BINGHATTI"].map((dev, i) => (
+              {["EMAAR", "DAMAC", "NAKHEEL", "SOBHA", "MERAAS", "BINGHATTI", "ELLINGTON", "EMAAR", "DAMAC", "NAKHEEL", "SOBHA", "MERAAS", "BINGHATTI", "ELLINGTON"].map((dev, i) => (
                 <span key={i} className={`text-2xl font-serif font-black opacity-20 hover:opacity-100 transition-opacity cursor-default ${i % 2 === 0 ? 'italic' : ''}`}>{dev}</span>
               ))}
             </motion.div>
